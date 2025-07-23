@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://6vkc4odul5el"]
+[gd_scene load_steps=7 format=3 uid="uid://6vkc4odul5el"]
 
 [ext_resource type="Texture2D" uid="uid://c72wckv4l4kdp" path="res://Assets/Character/Char1.png" id="1_fp685"]
+[ext_resource type="Script" uid="uid://bjihja7n227m5" path="res://Scripts/customer.gd" id="1_qf3me"]
 [ext_resource type="PackedScene" uid="uid://dl3a1wm0ondxa" path="res://Scenes/order_label.tscn" id="2_7c3kf"]
+[ext_resource type="Script" uid="uid://buhhxipl6f5ic" path="res://Scripts/patience_bar.gd" id="3_0v30w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7c3kf"]
 bg_color = Color(0.226707, 0.226708, 0.226707, 1)
@@ -18,18 +20,19 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [node name="Customer" type="Node2D"]
+script = ExtResource("1_qf3me")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_fp685")
 
 [node name="OrderLabel" parent="." instance=ExtResource("2_7c3kf")]
-position = Vector2(0, -958)
+position = Vector2(281, -607)
 scale = Vector2(0.5, 0.5)
 
-[node name="ProgressBar" type="ProgressBar" parent="OrderLabel"]
-offset_left = 392.0
+[node name="PatienceBar" type="ProgressBar" parent="OrderLabel"]
+offset_left = 288.0
 offset_top = 242.0
-offset_right = 635.0
+offset_right = 531.0
 offset_bottom = 269.0
 rotation = -1.5708
 scale = Vector2(2, 2)
@@ -37,3 +40,6 @@ theme_override_styles/background = SubResource("StyleBoxFlat_7c3kf")
 theme_override_styles/fill = SubResource("StyleBoxFlat_0v30w")
 value = 68.76
 show_percentage = false
+script = ExtResource("3_0v30w")
+decrease_amount = 20
+metadata/_edit_use_anchors_ = true
