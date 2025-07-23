@@ -1,0 +1,158 @@
+[gd_scene load_steps=18 format=3 uid="uid://wpdjhugicopb"]
+
+[ext_resource type="Texture2D" uid="uid://dsxlohjlm6ce8" path="res://Assets/Environment/background.png" id="1_4c57u"]
+[ext_resource type="Texture2D" uid="uid://qhepkprtddwb" path="res://Assets/Environment/Table.png" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://6vkc4odul5el" path="res://Scenes/customer.tscn" id="1_kek77"]
+[ext_resource type="PackedScene" uid="uid://cqqj827tloqdb" path="res://Scenes/rendang_plate.tscn" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://qxbyyqp3o7jq" path="res://Assets/UI/suit_hearts.png" id="2_2cqfq"]
+[ext_resource type="FontFile" uid="uid://bqe7ac6nj2yab" path="res://Assets/Fredoka-Medium.ttf" id="2_yaehf"]
+[ext_resource type="PackedScene" uid="uid://bkuv3ckk1o34e" path="res://Scenes/serving_plate.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://d2fk7pbbm01eo" path="res://Scenes/ayam_pop_plate.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://c7l5v3dxl0dts" path="res://Scenes/telur_plate.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://dtcesociub8au" path="res://Scenes/sambel_bowl.tscn" id="6_7mycd"]
+[ext_resource type="Script" uid="uid://v36kqya6siku" path="res://Scripts/Components/send&receive_item_component.gd" id="6_dg77c"]
+[ext_resource type="PackedScene" uid="uid://cb27jdik8673e" path="res://Scenes/sayur_plate.tscn" id="7_272bh"]
+[ext_resource type="PackedScene" uid="uid://cwsuey3hveipf" path="res://Scenes/rice_cooker.tscn" id="8_5vw27"]
+[ext_resource type="PackedScene" uid="uid://cni01jfugvef3" path="res://Scenes/es_teh.tscn" id="11_efxa6"]
+[ext_resource type="PackedScene" uid="uid://bpx4pdmwju2k3" path="res://Scenes/trash_can.tscn" id="13_ycdy4"]
+[ext_resource type="PackedScene" uid="uid://cqvyxhucyqql8" path="res://Scenes/UI/pause_button.tscn" id="15_vivmo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_074og"]
+font = ExtResource("2_yaehf")
+font_size = 48
+outline_size = 20
+outline_color = Color(0, 0.760784, 0.372549, 1)
+
+[node name="Main" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(945.5, 406)
+scale = Vector2(1.27279, 1.24414)
+texture = ExtResource("1_4c57u")
+metadata/_edit_lock_ = true
+
+[node name="UI Placeholder" type="Node2D" parent="."]
+
+[node name="Hearts" type="Node2D" parent="UI Placeholder"]
+position = Vector2(197, 86)
+
+[node name="Sprite2D" type="Sprite2D" parent="UI Placeholder/Hearts"]
+modulate = Color(0.928942, 0, 0.166904, 1)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_2cqfq")
+
+[node name="Sprite2D2" type="Sprite2D" parent="UI Placeholder/Hearts"]
+modulate = Color(0.929412, 0, 0.168627, 1)
+position = Vector2(80, 0)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_2cqfq")
+
+[node name="Sprite2D3" type="Sprite2D" parent="UI Placeholder/Hearts"]
+modulate = Color(0.929412, 0, 0.168627, 1)
+position = Vector2(160, 0)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_2cqfq")
+
+[node name="PauseButton" parent="UI Placeholder" instance=ExtResource("15_vivmo")]
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 35.0
+offset_top = 31.0
+offset_right = 135.0
+offset_bottom = 131.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Money" type="Label" parent="UI Placeholder"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1671.0
+offset_top = 20.0
+offset_right = 1903.0
+offset_bottom = 79.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Rp 999.999"
+label_settings = SubResource("LabelSettings_074og")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Customer" parent="." instance=ExtResource("1_kek77")]
+position = Vector2(967, 693)
+scale = Vector2(0.6, 0.6)
+
+[node name="PosMarker1" type="Marker2D" parent="."]
+position = Vector2(184, 881)
+metadata/_edit_lock_ = true
+
+[node name="PosMarker2" type="Marker2D" parent="."]
+position = Vector2(540, 881)
+metadata/_edit_lock_ = true
+
+[node name="PosMarker3" type="Marker2D" parent="."]
+position = Vector2(896, 881)
+metadata/_edit_lock_ = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Table" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(961.5, 703)
+scale = Vector2(1.78056, 0.557292)
+texture = ExtResource("1_ig7tw")
+
+[node name="ServingPlate" parent="CanvasLayer" instance=ExtResource("3_h2yge")]
+position = Vector2(972, 650)
+
+[node name="SambelBowl" parent="CanvasLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("6_7mycd")]
+position = Vector2(1402, 804)
+scale = Vector2(0.7, 0.7)
+script = ExtResource("6_dg77c")
+receiver = NodePath("../ServingPlate")
+item_list = ["Sambal Ijo"]
+
+[node name="AyamPopPlate" parent="CanvasLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("4_1bvp3")]
+position = Vector2(609, 890)
+script = ExtResource("6_dg77c")
+receiver = NodePath("../ServingPlate")
+item_list = ["Ayam Pop"]
+
+[node name="SayurPlate" parent="CanvasLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("7_272bh")]
+position = Vector2(1405, 967)
+scale = Vector2(0.7, 0.7)
+receiver = NodePath("../ServingPlate")
+item_list = ["Sayur"]
+
+[node name="TelurPlate" parent="CanvasLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("5_lquwl")]
+position = Vector2(1021, 889)
+script = ExtResource("6_dg77c")
+receiver = NodePath("../ServingPlate")
+item_list = ["Telur"]
+
+[node name="RendangPlate" parent="CanvasLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("2_0xm2m")]
+position = Vector2(211, 905)
+script = ExtResource("6_dg77c")
+receiver = NodePath("../ServingPlate")
+item_list = ["Rendang"]
+
+[node name="EsTeh" parent="CanvasLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("11_efxa6")]
+position = Vector2(1721, 537)
+script = ExtResource("6_dg77c")
+receiver = NodePath("../ServingPlate")
+item_list = ["Es Teh"]
+
+[node name="RiceCooker" parent="CanvasLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("8_5vw27")]
+position = Vector2(1749, 888)
+script = ExtResource("6_dg77c")
+receiver = NodePath("../ServingPlate")
+item_list = ["Nasi"]
+
+[node name="TrashCan" parent="CanvasLayer" node_paths=PackedStringArray("serving_plate") instance=ExtResource("13_ycdy4")]
+position = Vector2(200, 590)
+serving_plate = NodePath("../ServingPlate")

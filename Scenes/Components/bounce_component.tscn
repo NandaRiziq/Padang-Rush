@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://boh3ugknw6csa"]
+
+[ext_resource type="Script" uid="uid://bodu8hwrwt2ch" path="res://Scripts/Components/bounce_component.gd" id="1_c2vbh"]
+
+[node name="BounceComponent" type="Node"]
+script = ExtResource("1_c2vbh")
+tween_duration = 0.07

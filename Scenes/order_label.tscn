@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://dl3a1wm0ondxa"]
+
+[ext_resource type="FontFile" uid="uid://bqe7ac6nj2yab" path="res://Assets/Fredoka-Medium.ttf" id="1_62q7n"]
+[ext_resource type="Script" uid="uid://co7712ptwq6kw" path="res://Scripts/order_label.gd" id="1_lnnrx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knapa"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 80
+corner_radius_top_right = 80
+corner_radius_bottom_right = 80
+corner_radius_bottom_left = 80
+anti_aliasing = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_62q7n"]
+font = ExtResource("1_62q7n")
+font_size = 84
+font_color = Color(0, 0, 0, 1)
+
+[node name="OrderLabel" type="Node2D"]
+script = ExtResource("1_lnnrx")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -250.0
+offset_right = 360.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_knapa")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_right = 30
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "nasi, rendang, sayur, sambal ijo, es teh"
+label_settings = SubResource("LabelSettings_62q7n")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(3, -114)
+rotation = 1.5708
+scale = Vector2(2, 2)
+polygon = PackedVector2Array(182, -20, 182, 23, 221, 1.49999)

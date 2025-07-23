@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2fk7pbbm01eo"]
+
+[ext_resource type="PackedScene" uid="uid://boh3ugknw6csa" path="res://Scenes/Components/bounce_component.tscn" id="1_lyc1d"]
+[ext_resource type="Texture2D" uid="uid://hj6326f11xio" path="res://Assets/Food/ayam.png" id="2_x5knr"]
+[ext_resource type="PackedScene" uid="uid://ctofytujvrca7" path="res://Scenes/Components/tap_component.tscn" id="3_44niu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lyc1d"]
+radius = 136.0
+height = 360.0
+
+[node name="AyamPopPlate" type="Node2D"]
+
+[node name="BounceComponent" parent="." instance=ExtResource("1_lyc1d")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_x5knr")
+
+[node name="TapComponent" parent="." instance=ExtResource("3_44niu")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TapComponent"]
+position = Vector2(1, 16)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_lyc1d")

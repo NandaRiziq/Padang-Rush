@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://bpx4pdmwju2k3"]
+
+[ext_resource type="Script" uid="uid://ba8vgve57j3nk" path="res://Scenes/trash_can.gd" id="1_yd0mo"]
+[ext_resource type="Texture2D" uid="uid://wnfvdu8i0m0i" path="res://icon.svg" id="1_yk8j1"]
+[ext_resource type="PackedScene" uid="uid://boh3ugknw6csa" path="res://Scenes/Components/bounce_component.tscn" id="2_3sehr"]
+[ext_resource type="PackedScene" uid="uid://ctofytujvrca7" path="res://Scenes/Components/tap_component.tscn" id="3_yd0mo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ahme8"]
+size = Vector2(218, 218)
+
+[node name="TrashCan" type="Node2D"]
+script = ExtResource("1_yd0mo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("1_yk8j1")
+
+[node name="BounceComponent" parent="." instance=ExtResource("2_3sehr")]
+
+[node name="TapComponent" parent="." instance=ExtResource("3_yd0mo")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TapComponent"]
+shape = SubResource("RectangleShape2D_ahme8")
+
+[connection signal="item_tapped" from="TapComponent" to="." method="_on_tap_component_item_tapped"]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctofytujvrca7"]
+
+[ext_resource type="Script" uid="uid://bgx0lpfgu6dut" path="res://Scripts/Components/tap_component.gd" id="1_3vp1f"]
+
+[node name="TapComponent" type="Area2D"]
+script = ExtResource("1_3vp1f")

@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cni01jfugvef3"]
+
+[ext_resource type="PackedScene" uid="uid://boh3ugknw6csa" path="res://Scenes/Components/bounce_component.tscn" id="1_hc5db"]
+[ext_resource type="Texture2D" uid="uid://dy5v21o8fbd2j" path="res://Assets/Food/es teh.png" id="2_nxwx3"]
+[ext_resource type="PackedScene" uid="uid://ctofytujvrca7" path="res://Scenes/Components/tap_component.tscn" id="3_nxwx3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bis12"]
+size = Vector2(224, 298)
+
+[node name="EsTeh" type="Node2D"]
+
+[node name="BounceComponent" parent="." instance=ExtResource("1_hc5db")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(40, -29)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_nxwx3")
+
+[node name="TapComponent" parent="." instance=ExtResource("3_nxwx3")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TapComponent"]
+position = Vector2(44, -8)
+shape = SubResource("RectangleShape2D_bis12")

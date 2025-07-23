@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqqj827tloqdb"]
+
+[ext_resource type="PackedScene" uid="uid://boh3ugknw6csa" path="res://Scenes/Components/bounce_component.tscn" id="1_5yfsu"]
+[ext_resource type="Texture2D" uid="uid://be6ulngjrhvkj" path="res://Assets/Food/rendang.png" id="2_pmjpe"]
+[ext_resource type="PackedScene" uid="uid://ctofytujvrca7" path="res://Scenes/Components/tap_component.tscn" id="3_4pjmp"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5yfsu"]
+radius = 118.0
+height = 380.0
+
+[node name="RendangPlate" type="Node2D"]
+
+[node name="BounceComponent" parent="." instance=ExtResource("1_5yfsu")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_pmjpe")
+
+[node name="TapComponent" parent="." instance=ExtResource("3_4pjmp")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TapComponent"]
+position = Vector2(0, 14)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_5yfsu")

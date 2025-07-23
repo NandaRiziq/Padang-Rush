@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://cb27jdik8673e"]
+
+[ext_resource type="Script" uid="uid://v36kqya6siku" path="res://Scripts/Components/send&receive_item_component.gd" id="1_1y1so"]
+[ext_resource type="PackedScene" uid="uid://boh3ugknw6csa" path="res://Scenes/Components/bounce_component.tscn" id="1_tg82l"]
+[ext_resource type="Texture2D" uid="uid://ck8en6y3r8fy" path="res://Assets/Food/daun.png" id="2_shwdj"]
+[ext_resource type="PackedScene" uid="uid://ctofytujvrca7" path="res://Scenes/Components/tap_component.tscn" id="3_shwdj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_shwdj"]
+radius = 105.5
+height = 330.0
+
+[node name="SayurPlate" type="Node2D"]
+script = ExtResource("1_1y1so")
+
+[node name="BounceComponent" parent="." instance=ExtResource("1_tg82l")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_shwdj")
+
+[node name="TapComponent" parent="." instance=ExtResource("3_shwdj")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TapComponent"]
+position = Vector2(-2, 15.5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_shwdj")
