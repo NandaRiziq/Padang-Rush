@@ -6,18 +6,20 @@ var offset_pos:int = 50
 var swipe_duration:float = 0.5
 var order_duration:float = 0.5
 
-@onready var label: Label = $PanelContainer/MarginContainer/Label
+@onready var order_label: Label = $PanelContainer/MarginContainer/OrderLabel
+@onready var customer: Node2D = $".."
 
 
 func _ready() -> void:
+	order_label.text = ""
 	self.modulate.a = 0 #transparent
 	origin_pos = self.position
 	initial_pos = self.position - Vector2(offset_pos, 0)
 	self.position = initial_pos
-	
-	label.visible_ratio = 1 #hide text
-	
-	#swipe in animation
+
+
+### swipe in animation
+func swipe_in_order() -> void:
 	var swipe_in = create_tween()
 	swipe_in.tween_property(self, "position", origin_pos, swipe_duration)
 	swipe_in.set_parallel()
@@ -25,4 +27,18 @@ func _ready() -> void:
 	await swipe_in.finished
 	
 	#var type_order = create_tween()
-	#type_order.tween_property(label, "visible_ratio", 1, order_duration)
+	#type_order.tween_property(order_label, "visible_ratio", 1, order_duration)
+
+
+### set order label text according to order list
+func show_order_label() -> void:
+	print(customer.order)
+	for item in customer.order:
+		if item != customer.order[len(customer.order)-1]:
+			order_label.text += item + '\n'
+		else:
+			order_label.text += item
+	order_label.visible_ratio = 1 #hide text
+	swipe_in_order()
+	
+	

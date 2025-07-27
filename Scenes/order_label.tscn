@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dl3a1wm0ondxa"]
+[gd_scene load_steps=6 format=3 uid="uid://dl3a1wm0ondxa"]
 
 [ext_resource type="FontFile" uid="uid://bqe7ac6nj2yab" path="res://Assets/Fredoka-Medium.ttf" id="1_62q7n"]
 [ext_resource type="Script" uid="uid://co7712ptwq6kw" path="res://Scripts/order_label.gd" id="1_lnnrx"]
@@ -11,9 +11,13 @@ corner_radius_bottom_right = 80
 corner_radius_bottom_left = 80
 anti_aliasing = false
 
-[sub_resource type="LabelSettings" id="LabelSettings_62q7n"]
+[sub_resource type="Theme" id="Theme_lnnrx"]
+default_font = ExtResource("1_62q7n")
+default_font_size = 85
+
+[sub_resource type="LabelSettings" id="LabelSettings_lnnrx"]
 font = ExtResource("1_62q7n")
-font_size = 84
+font_size = 85
 font_color = Color(0, 0, 0, 1)
 
 [node name="OrderLabel" type="Node2D"]
@@ -26,9 +30,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -242.0
-offset_top = -343.0
+offset_top = -124.0
 offset_right = 242.0
-offset_bottom = 344.0
+offset_bottom = 125.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_knapa")
@@ -41,18 +45,19 @@ theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 30
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer"]
+[node name="OrderLabel" type="Label" parent="PanelContainer/MarginContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+size_flags_horizontal = 4
+theme = SubResource("Theme_lnnrx")
 text = "nasi
-ayam pop
+rendang
 sayur
 sambal
 es teh"
-label_settings = SubResource("LabelSettings_62q7n")
+label_settings = SubResource("LabelSettings_lnnrx")
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 3
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2(-264, -390)

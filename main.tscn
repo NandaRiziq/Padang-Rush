@@ -84,88 +84,81 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="Customer" parent="." instance=ExtResource("1_kek77")]
-position = Vector2(1169, 634)
+position = Vector2(1145, 634)
 scale = Vector2(0.6, 0.6)
 
-[node name="Customer2" parent="." instance=ExtResource("1_kek77")]
-position = Vector2(718, 634)
-scale = Vector2(0.6, 0.6)
+[node name="Queue" type="Node" parent="."]
 
-[node name="Customer3" parent="." instance=ExtResource("1_kek77")]
-position = Vector2(246, 634)
-scale = Vector2(0.6, 0.6)
-
-[node name="Customer4" parent="." instance=ExtResource("1_kek77")]
-position = Vector2(1618, 634)
-scale = Vector2(0.6, 0.6)
-
-[node name="PosMarker1" type="Marker2D" parent="."]
-position = Vector2(184, 881)
+[node name="PosMarker1" type="Marker2D" parent="Queue"]
+position = Vector2(200, 634)
 metadata/_edit_lock_ = true
 
-[node name="PosMarker2" type="Marker2D" parent="."]
-position = Vector2(540, 881)
+[node name="PosMarker2" type="Marker2D" parent="Queue"]
+position = Vector2(670, 634)
 metadata/_edit_lock_ = true
 
-[node name="PosMarker3" type="Marker2D" parent="."]
-position = Vector2(896, 881)
+[node name="PosMarker3" type="Marker2D" parent="Queue"]
+position = Vector2(1145, 634)
 metadata/_edit_lock_ = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 2
+[node name="PosMarker4" type="Marker2D" parent="Queue"]
+position = Vector2(1620, 634)
+metadata/_edit_lock_ = true
 
-[node name="Table" type="Sprite2D" parent="CanvasLayer"]
+[node name="TableLayer" type="CanvasLayer" parent="."]
+
+[node name="Table" type="Sprite2D" parent="TableLayer"]
 position = Vector2(961.5, 703)
 scale = Vector2(1.78056, 0.557292)
 texture = ExtResource("1_ig7tw")
 
-[node name="ServingPlate" parent="CanvasLayer" instance=ExtResource("3_h2yge")]
-position = Vector2(933, 622)
+[node name="ServingPlate" parent="TableLayer" instance=ExtResource("3_h2yge")]
+position = Vector2(960, 622)
 
-[node name="SambelBowl" parent="CanvasLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("6_7mycd")]
+[node name="SambelBowl" parent="TableLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("6_7mycd")]
 position = Vector2(1402, 804)
 scale = Vector2(0.7, 0.7)
 script = ExtResource("6_dg77c")
 receiver = NodePath("../ServingPlate")
 item_list = ["Sambal Ijo"]
 
-[node name="AyamPopPlate" parent="CanvasLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("4_1bvp3")]
+[node name="AyamPopPlate" parent="TableLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("4_1bvp3")]
 position = Vector2(609, 890)
 script = ExtResource("6_dg77c")
 receiver = NodePath("../ServingPlate")
 item_list = ["Ayam Pop"]
 
-[node name="SayurPlate" parent="CanvasLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("7_272bh")]
+[node name="SayurPlate" parent="TableLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("7_272bh")]
 position = Vector2(1405, 967)
 scale = Vector2(0.7, 0.7)
 receiver = NodePath("../ServingPlate")
 item_list = ["Sayur"]
 
-[node name="TelurPlate" parent="CanvasLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("5_lquwl")]
+[node name="TelurPlate" parent="TableLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("5_lquwl")]
 position = Vector2(1021, 889)
 script = ExtResource("6_dg77c")
 receiver = NodePath("../ServingPlate")
 item_list = ["Telur"]
 
-[node name="RendangPlate" parent="CanvasLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("2_0xm2m")]
+[node name="RendangPlate" parent="TableLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("2_0xm2m")]
 position = Vector2(211, 905)
 script = ExtResource("6_dg77c")
 receiver = NodePath("../ServingPlate")
 item_list = ["Rendang"]
 
-[node name="EsTeh" parent="CanvasLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("11_efxa6")]
+[node name="EsTeh" parent="TableLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("11_efxa6")]
 position = Vector2(1760, 579)
 scale = Vector2(0.7, 0.7)
 script = ExtResource("6_dg77c")
 receiver = NodePath("../ServingPlate")
 item_list = ["Es Teh"]
 
-[node name="RiceCooker" parent="CanvasLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("8_5vw27")]
+[node name="RiceCooker" parent="TableLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("8_5vw27")]
 position = Vector2(1749, 888)
 script = ExtResource("6_dg77c")
 receiver = NodePath("../ServingPlate")
 item_list = ["Nasi"]
 
-[node name="TrashCan" parent="CanvasLayer" node_paths=PackedStringArray("serving_plate") instance=ExtResource("13_ycdy4")]
+[node name="TrashCan" parent="TableLayer" node_paths=PackedStringArray("serving_plate") instance=ExtResource("13_ycdy4")]
 position = Vector2(200, 590)
 serving_plate = NodePath("../ServingPlate")

@@ -22,7 +22,7 @@ corner_radius_bottom_left = 10
 [node name="Customer" type="Node2D"]
 script = ExtResource("1_qf3me")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="CustomerSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_fp685")
 
 [node name="OrderLabel" parent="." instance=ExtResource("2_7c3kf")]
@@ -41,5 +41,6 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_0v30w")
 value = 68.76
 show_percentage = false
 script = ExtResource("3_0v30w")
-decrease_amount = 20
 metadata/_edit_use_anchors_ = true
+
+[node name="CustomerAnimation" type="AnimationPlayer" parent="."]
