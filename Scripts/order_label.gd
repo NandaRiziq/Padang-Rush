@@ -3,7 +3,7 @@ extends Node2D
 var initial_pos:Vector2
 var origin_pos:Vector2
 var offset_pos:int = 50
-var swipe_duration:float = 0.5
+var swipe_duration:float = 0.3
 var order_duration:float = 0.5
 
 @onready var order_label: Label = $PanelContainer/MarginContainer/OrderLabel
@@ -11,6 +11,8 @@ var order_duration:float = 0.5
 
 
 func _ready() -> void:
+	customer.order_ready.connect(show_order_label)
+	
 	order_label.text = ""
 	self.modulate.a = 0 #transparent
 	origin_pos = self.position
@@ -40,5 +42,3 @@ func show_order_label() -> void:
 			order_label.text += item
 	order_label.visible_ratio = 1 #hide text
 	swipe_in_order()
-	
-	

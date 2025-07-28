@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var receiver:Node #empty if only receiving
-@export_enum("Nasi", "Ayam Pop", "Rendang", "Telur", "Sayur", "Sambal Ijo", "Es Teh") var item_list:PackedStringArray = []
+@export_enum("Nasi", "Ayam Pop", "Rendang", "Telur", "Sayur", "Sambal", "Es Teh") var item_list:PackedStringArray = []
 
 @onready var tap_component: Area2D = $TapComponent
 @onready var bounce_component: Node = $BounceComponent

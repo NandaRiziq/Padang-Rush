@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://6vkc4odul5el"]
+[gd_scene load_steps=12 format=3 uid="uid://6vkc4odul5el"]
 
 [ext_resource type="Texture2D" uid="uid://c72wckv4l4kdp" path="res://Assets/Character/Char1.png" id="1_fp685"]
 [ext_resource type="Script" uid="uid://bjihja7n227m5" path="res://Scripts/customer.gd" id="1_qf3me"]
 [ext_resource type="PackedScene" uid="uid://dl3a1wm0ondxa" path="res://Scenes/order_label.tscn" id="2_7c3kf"]
 [ext_resource type="Script" uid="uid://buhhxipl6f5ic" path="res://Scripts/patience_bar.gd" id="3_0v30w"]
+[ext_resource type="Script" uid="uid://bkvwqkcwl0bxm" path="res://Scripts/customer_animation.gd" id="5_vkxjs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7c3kf"]
 bg_color = Color(0.226707, 0.226708, 0.226707, 1)
@@ -19,8 +20,65 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="Animation" id="Animation_vkxjs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CustomerSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qf3me"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CustomerSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.05, 0.95), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fhub2"]
+resource_name = "walk"
+length = 0.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CustomerSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.05, 0.95), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fhub2"]
+_data = {
+&"RESET": SubResource("Animation_vkxjs"),
+&"idle": SubResource("Animation_qf3me"),
+&"walk": SubResource("Animation_fhub2")
+}
+
 [node name="Customer" type="Node2D"]
 script = ExtResource("1_qf3me")
+walk_duration = 3.0
 
 [node name="CustomerSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_fp685")
@@ -44,3 +102,7 @@ script = ExtResource("3_0v30w")
 metadata/_edit_use_anchors_ = true
 
 [node name="CustomerAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_fhub2")
+}
+script = ExtResource("5_vkxjs")

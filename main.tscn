@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://wpdjhugicopb"]
+[gd_scene load_steps=19 format=3 uid="uid://wpdjhugicopb"]
 
 [ext_resource type="Texture2D" uid="uid://dsxlohjlm6ce8" path="res://Assets/Environment/background.png" id="1_4c57u"]
 [ext_resource type="Texture2D" uid="uid://qhepkprtddwb" path="res://Assets/Environment/Table.png" id="1_ig7tw"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c7l5v3dxl0dts" path="res://Scenes/telur_plate.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://dtcesociub8au" path="res://Scenes/sambel_bowl.tscn" id="6_7mycd"]
 [ext_resource type="Script" uid="uid://v36kqya6siku" path="res://Scripts/Components/send&receive_item_component.gd" id="6_dg77c"]
+[ext_resource type="Script" uid="uid://cghe8q3qvuhts" path="res://Scripts/queue_layer.gd" id="6_yaehf"]
 [ext_resource type="PackedScene" uid="uid://cb27jdik8673e" path="res://Scenes/sayur_plate.tscn" id="7_272bh"]
 [ext_resource type="PackedScene" uid="uid://cwsuey3hveipf" path="res://Scenes/rice_cooker.tscn" id="8_5vw27"]
 [ext_resource type="PackedScene" uid="uid://cni01jfugvef3" path="res://Scenes/es_teh.tscn" id="11_efxa6"]
@@ -87,25 +88,27 @@ vertical_alignment = 1
 position = Vector2(1145, 634)
 scale = Vector2(0.6, 0.6)
 
-[node name="Queue" type="Node" parent="."]
+[node name="QueueLayer" type="CanvasLayer" parent="."]
+script = ExtResource("6_yaehf")
 
-[node name="PosMarker1" type="Marker2D" parent="Queue"]
+[node name="QueuePos1" type="Marker2D" parent="QueueLayer"]
 position = Vector2(200, 634)
 metadata/_edit_lock_ = true
 
-[node name="PosMarker2" type="Marker2D" parent="Queue"]
+[node name="QueuePos2" type="Marker2D" parent="QueueLayer"]
 position = Vector2(670, 634)
 metadata/_edit_lock_ = true
 
-[node name="PosMarker3" type="Marker2D" parent="Queue"]
+[node name="QueuePos3" type="Marker2D" parent="QueueLayer"]
 position = Vector2(1145, 634)
 metadata/_edit_lock_ = true
 
-[node name="PosMarker4" type="Marker2D" parent="Queue"]
+[node name="QueuePos4" type="Marker2D" parent="QueueLayer"]
 position = Vector2(1620, 634)
 metadata/_edit_lock_ = true
 
 [node name="TableLayer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="Table" type="Sprite2D" parent="TableLayer"]
 position = Vector2(961.5, 703)
@@ -120,7 +123,7 @@ position = Vector2(1402, 804)
 scale = Vector2(0.7, 0.7)
 script = ExtResource("6_dg77c")
 receiver = NodePath("../ServingPlate")
-item_list = ["Sambal Ijo"]
+item_list = ["Sambal"]
 
 [node name="AyamPopPlate" parent="TableLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("4_1bvp3")]
 position = Vector2(609, 890)
