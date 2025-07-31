@@ -1,6 +1,7 @@
+class_name Customer
 extends Node2D
 
-@onready var queue_layer: CanvasLayer = $"../QueueLayer"
+@onready var queue_layer: CanvasLayer = %QueueLayer
 @onready var customer_sprite: Sprite2D = $CustomerSprite
 @onready var order_label: Node2D = $OrderLabel
 @onready var patience_bar: ProgressBar = $OrderLabel/PatienceBar
@@ -16,7 +17,7 @@ var start_end_pos: Vector2
 signal order_ready
 
 ### char sprites
-var char: Array = [
+var characters: Array = [
 	[ #char 1
 	"res://Assets/Character/Char1.png",
 	"res://Assets/Character/Char1-smiling.png",
@@ -34,7 +35,7 @@ func _ready() -> void:
 	#wait for the queue slot ready
 	await queue_layer.queue_slot_ready
 	
-	# delete customer upon patience depleted
+	# customer walkout upon patience depleted
 	patience_bar.patience_depleted.connect(walk_out_queue.bind(false))
 	
 	# choose start position
@@ -56,7 +57,7 @@ func _ready() -> void:
 
 
 func random_char() -> void:
-	choosen_char = char[randi_range(0, len(char)-1)]
+	choosen_char = characters[randi_range(0, len(characters)-1)]
 
 
 func random_order():
@@ -108,23 +109,30 @@ func walk_to(target_pos) -> void:
 	await walk_in.finished
 
 
+### customer walking into queue
 func walk_to_queue() -> void:
 	await walk_to(chosen_queue_slot.position)
+	self.reparent(chosen_queue_slot)
 	customer_animation.idle_anim()
 	order_ready.emit()
 
 
-func walk_out_queue(is_succeed):
-		queue_layer.restore_slot(chosen_queue_slot)
-		if is_succeed:
-			customer_sprite.texture = load(choosen_char[1])
-		else:
-			customer_sprite.texture = load(choosen_char[2])
-		choose_start_end_pos()
-		await walk_to(start_end_pos)
-		self.queue_free()
+### customer walking out of queue to off screen
+func walk_out_queue(is_succeed: bool):
+	queue_layer.restore_slot(chosen_queue_slot)
+	self.reparent(get_node("../../.."))
+	if is_succeed: # order fulfilled
+		customer_sprite.texture = load(choosen_char[1]) # happy face
+		order_label.hide()
+		patience_bar.stop_patience_bar()
+	else: # order failed
+		customer_sprite.texture = load(choosen_char[2]) # angry face
+		order_label.hide()
+	choose_start_end_pos()
+	await walk_to(start_end_pos)
+	self.queue_free()
 
 
 func choose_queue_slot() -> void:
 	chosen_queue_slot = queue_layer.available_slot[randi_range(0, len(queue_layer.available_slot)-1)]
-	queue_layer.available_slot.erase(chosen_queue_slot)
+	queue_layer.use_slot(chosen_queue_slot)

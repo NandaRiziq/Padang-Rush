@@ -8,13 +8,15 @@ var order_duration:float = 0.5
 
 @onready var order_label: Label = $PanelContainer/MarginContainer/OrderLabel
 @onready var customer: Node2D = $".."
+@onready var patience_bar: ProgressBar = $PatienceBar
 
 
 func _ready() -> void:
+	patience_bar.patience_depleted.connect(self.hide)
 	customer.order_ready.connect(show_order_label)
 	
 	order_label.text = ""
-	self.modulate.a = 0 #transparent
+	self.modulate.a = 0 #transparent 
 	origin_pos = self.position
 	initial_pos = self.position - Vector2(offset_pos, 0)
 	self.position = initial_pos

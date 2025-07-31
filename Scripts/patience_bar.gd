@@ -39,3 +39,7 @@ func patience_depleted_announce() -> void:
 
 func start_patience_bar() -> void:
 	is_bar_starting = true
+
+
+func stop_patience_bar() -> void:
+	is_bar_starting = false

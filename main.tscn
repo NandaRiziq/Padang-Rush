@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://wpdjhugicopb"]
+[gd_scene load_steps=20 format=3 uid="uid://wpdjhugicopb"]
 
 [ext_resource type="Texture2D" uid="uid://dsxlohjlm6ce8" path="res://Assets/Environment/background.png" id="1_4c57u"]
 [ext_resource type="Texture2D" uid="uid://qhepkprtddwb" path="res://Assets/Environment/Table.png" id="1_ig7tw"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dtcesociub8au" path="res://Scenes/sambel_bowl.tscn" id="6_7mycd"]
 [ext_resource type="Script" uid="uid://v36kqya6siku" path="res://Scripts/Components/send&receive_item_component.gd" id="6_dg77c"]
 [ext_resource type="Script" uid="uid://cghe8q3qvuhts" path="res://Scripts/queue_layer.gd" id="6_yaehf"]
+[ext_resource type="Script" uid="uid://cmjuuke8ouhjc" path="res://Scripts/Components/queue_pos_component.gd" id="7_074og"]
 [ext_resource type="PackedScene" uid="uid://cb27jdik8673e" path="res://Scenes/sayur_plate.tscn" id="7_272bh"]
 [ext_resource type="PackedScene" uid="uid://cwsuey3hveipf" path="res://Scenes/rice_cooker.tscn" id="8_5vw27"]
 [ext_resource type="PackedScene" uid="uid://cni01jfugvef3" path="res://Scenes/es_teh.tscn" id="11_efxa6"]
@@ -89,22 +90,30 @@ position = Vector2(1145, 634)
 scale = Vector2(0.6, 0.6)
 
 [node name="QueueLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
 script = ExtResource("6_yaehf")
+
+[node name="ReceiverComponent" type="Node2D" parent="QueueLayer"]
+script = ExtResource("6_dg77c")
 
 [node name="QueuePos1" type="Marker2D" parent="QueueLayer"]
 position = Vector2(200, 634)
+script = ExtResource("7_074og")
 metadata/_edit_lock_ = true
 
 [node name="QueuePos2" type="Marker2D" parent="QueueLayer"]
 position = Vector2(670, 634)
+script = ExtResource("7_074og")
 metadata/_edit_lock_ = true
 
 [node name="QueuePos3" type="Marker2D" parent="QueueLayer"]
 position = Vector2(1145, 634)
+script = ExtResource("7_074og")
 metadata/_edit_lock_ = true
 
 [node name="QueuePos4" type="Marker2D" parent="QueueLayer"]
 position = Vector2(1620, 634)
+script = ExtResource("7_074og")
 metadata/_edit_lock_ = true
 
 [node name="TableLayer" type="CanvasLayer" parent="."]
@@ -115,8 +124,9 @@ position = Vector2(961.5, 703)
 scale = Vector2(1.78056, 0.557292)
 texture = ExtResource("1_ig7tw")
 
-[node name="ServingPlate" parent="TableLayer" instance=ExtResource("3_h2yge")]
+[node name="ServingPlate" parent="TableLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("3_h2yge")]
 position = Vector2(960, 622)
+receiver = NodePath("../../QueueLayer/ReceiverComponent")
 
 [node name="SambelBowl" parent="TableLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("6_7mycd")]
 position = Vector2(1402, 804)
