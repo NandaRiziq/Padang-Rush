@@ -4,7 +4,7 @@ extends Area2D
 signal item_tapped
 
 
-func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:
+func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
 	if event.is_action_pressed("tap"):
 		bounce_component.bounce()
 		item_tapped.emit()

@@ -1,8 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://wpdjhugicopb"]
+[gd_scene load_steps=27 format=3 uid="uid://wpdjhugicopb"]
 
 [ext_resource type="Texture2D" uid="uid://dsxlohjlm6ce8" path="res://Assets/Environment/background.png" id="1_4c57u"]
+[ext_resource type="Script" uid="uid://c0d0wifwkaoup" path="res://Scripts/main.gd" id="1_cegan"]
 [ext_resource type="Texture2D" uid="uid://qhepkprtddwb" path="res://Assets/Environment/Table.png" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://6vkc4odul5el" path="res://Scenes/customer.tscn" id="1_kek77"]
 [ext_resource type="PackedScene" uid="uid://cqqj827tloqdb" path="res://Scenes/rendang_plate.tscn" id="2_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://qxbyyqp3o7jq" path="res://Assets/UI/suit_hearts.png" id="2_2cqfq"]
 [ext_resource type="FontFile" uid="uid://bqe7ac6nj2yab" path="res://Assets/Fredoka-Medium.ttf" id="2_yaehf"]
@@ -13,11 +13,15 @@
 [ext_resource type="Script" uid="uid://v36kqya6siku" path="res://Scripts/Components/send&receive_item_component.gd" id="6_dg77c"]
 [ext_resource type="Script" uid="uid://cghe8q3qvuhts" path="res://Scripts/queue_layer.gd" id="6_yaehf"]
 [ext_resource type="Script" uid="uid://cmjuuke8ouhjc" path="res://Scripts/Components/queue_pos_component.gd" id="7_074og"]
+[ext_resource type="Script" uid="uid://dhlhmlcudn13k" path="res://Scripts/time_label.gd" id="7_82xsv"]
 [ext_resource type="PackedScene" uid="uid://cb27jdik8673e" path="res://Scenes/sayur_plate.tscn" id="7_272bh"]
 [ext_resource type="PackedScene" uid="uid://cwsuey3hveipf" path="res://Scenes/rice_cooker.tscn" id="8_5vw27"]
+[ext_resource type="Script" uid="uid://b7ucpewsq7s0o" path="res://Scripts/spawn_timer_bar.gd" id="8_d13ii"]
+[ext_resource type="Script" uid="uid://c65ntgh2cph03" path="res://Scripts/customer_spawner.gd" id="8_ryguw"]
 [ext_resource type="PackedScene" uid="uid://cni01jfugvef3" path="res://Scenes/es_teh.tscn" id="11_efxa6"]
 [ext_resource type="PackedScene" uid="uid://bpx4pdmwju2k3" path="res://Scenes/trash_can.tscn" id="13_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://cqvyxhucyqql8" path="res://Scenes/UI/pause_button.tscn" id="15_vivmo"]
+[ext_resource type="Script" uid="uid://4sef0ollbfhn" path="res://Scripts/debugger_label.gd" id="22_ryguw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_074og"]
 font = ExtResource("2_yaehf")
@@ -25,7 +29,20 @@ font_size = 48
 outline_size = 20
 outline_color = Color(0, 0.760784, 0.372549, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_d13ii"]
+font = ExtResource("2_yaehf")
+font_size = 21
+
+[sub_resource type="LabelSettings" id="LabelSettings_cegan"]
+font = ExtResource("2_yaehf")
+font_size = 52
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ryguw"]
+bg_color = Color(0.412067, 0.640458, 0.709563, 1)
+
 [node name="Main" type="Node2D"]
+process_priority = 10
+script = ExtResource("1_cegan")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(945.5, 406)
@@ -85,16 +102,58 @@ label_settings = SubResource("LabelSettings_074og")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Customer" parent="." instance=ExtResource("1_kek77")]
-position = Vector2(1145, 634)
-scale = Vector2(0.6, 0.6)
+[node name="DebuggerLayer" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="DebuggerLabel" type="Label" parent="DebuggerLayer"]
+offset_left = 258.0
+offset_top = 568.0
+offset_right = 716.0
+offset_bottom = 710.0
+text = "
+    difficulty: %d                              available slot: %d
+    max customers: %d
+    max main dish: %d
+    taken slot: %d"
+label_settings = SubResource("LabelSettings_d13ii")
+script = ExtResource("22_ryguw")
+
+[node name="TimeLabel" type="Label" parent="DebuggerLayer"]
+offset_left = 894.0
+offset_top = 47.0
+offset_right = 1027.0
+offset_bottom = 111.0
+text = "00:00"
+label_settings = SubResource("LabelSettings_cegan")
+script = ExtResource("7_82xsv")
+
+[node name="SpawnTimerBar" type="ProgressBar" parent="DebuggerLayer"]
+offset_left = 893.0
+offset_top = 111.0
+offset_right = 1030.0
+offset_bottom = 144.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_ryguw")
+value = 66.43
+show_percentage = false
+script = ExtResource("8_d13ii")
+
+[node name="WalkOutLayer" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="OffQueueLayer" type="CanvasLayer" parent="."]
+layer = 4
+
+[node name="CustomerSpawner" type="Node2D" parent="OffQueueLayer"]
+script = ExtResource("8_ryguw")
+
+[node name="Timer" type="Timer" parent="OffQueueLayer/CustomerSpawner"]
+wait_time = 4.0
 
 [node name="QueueLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
+process_priority = 1
+layer = 5
 script = ExtResource("6_yaehf")
-
-[node name="ReceiverComponent" type="Node2D" parent="QueueLayer"]
-script = ExtResource("6_dg77c")
 
 [node name="QueuePos1" type="Marker2D" parent="QueueLayer"]
 position = Vector2(200, 634)
@@ -117,16 +176,15 @@ script = ExtResource("7_074og")
 metadata/_edit_lock_ = true
 
 [node name="TableLayer" type="CanvasLayer" parent="."]
-layer = 2
+layer = 10
 
 [node name="Table" type="Sprite2D" parent="TableLayer"]
 position = Vector2(961.5, 703)
 scale = Vector2(1.78056, 0.557292)
 texture = ExtResource("1_ig7tw")
 
-[node name="ServingPlate" parent="TableLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("3_h2yge")]
+[node name="ServingPlate" parent="TableLayer" instance=ExtResource("3_h2yge")]
 position = Vector2(960, 622)
-receiver = NodePath("../../QueueLayer/ReceiverComponent")
 
 [node name="SambelBowl" parent="TableLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("6_7mycd")]
 position = Vector2(1402, 804)

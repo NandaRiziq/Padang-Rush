@@ -5,7 +5,6 @@ extends CanvasLayer
 @onready var queue_pos_3: Marker2D = $QueuePos3
 @onready var queue_pos_4: Marker2D = $QueuePos4
 @onready var serving_plate: Node2D = $"../TableLayer/ServingPlate"
-@onready var receiver_component: Node = $ReceiverComponent
 
 var available_slot: Array
 var taken_slot: Array
@@ -15,15 +14,15 @@ signal queue_slot_ready
 
 
 func _ready() -> void:
-	receiver_component.item_received.connect(check_order)
+	# Only check orders once the serving plate sends the full assembled order
+	serving_plate.item_send.connect(check_order)
 	available_slot = [
 	queue_pos_1,
 	queue_pos_2,
 	queue_pos_3,
 	queue_pos_4
 	]
-	queue_slot_ready.emit()
-	#print('\navailable slot:', len(available_slot))
+	call_deferred("emit_signal", "queue_slot_ready")
 
 
 func use_slot(slot) -> void:
@@ -33,10 +32,12 @@ func use_slot(slot) -> void:
 
 func restore_slot(slot) -> void:
 	available_slot.append(slot)
-
+	taken_slot.erase(slot)
+	
 
 func check_order() -> void:
-	var received_order: Array = receiver_component.item_list
+	# Use the assembled items on the serving plate as the definitive order
+	var received_order: Array = serving_plate.item_list
 	if received_order.is_empty():
 		print('received order is empty')
 		return
@@ -55,9 +56,8 @@ func check_order() -> void:
 			if order_match(received_order, customer.order):
 				print('order match!')
 				customer.walk_out_queue(true)
-				receiver_component.item_list.clear()
 				serving_plate.item_list.clear()
-				customer = null
+				return  # Exit the function after finding a match
 
 
 func order_match(order1: Array, order2: Array) -> bool:

@@ -1,23 +1,67 @@
-[gd_scene load_steps=5 format=3 uid="uid://cni01jfugvef3"]
+[gd_scene load_steps=10 format=3 uid="uid://cni01jfugvef3"]
 
+[ext_resource type="Script" uid="uid://bcbpbs7jleuxq" path="res://Scripts/Components/es_teh_component.gd" id="1_2qfb5"]
 [ext_resource type="PackedScene" uid="uid://boh3ugknw6csa" path="res://Scenes/Components/bounce_component.tscn" id="1_hc5db"]
-[ext_resource type="Texture2D" uid="uid://dy5v21o8fbd2j" path="res://Assets/Food/es teh.png" id="2_nxwx3"]
+[ext_resource type="Texture2D" uid="uid://voicj0kvirpa" path="res://Assets/Object/jar.png" id="2_nxwx3"]
 [ext_resource type="PackedScene" uid="uid://ctofytujvrca7" path="res://Scenes/Components/tap_component.tscn" id="3_nxwx3"]
+[ext_resource type="Texture2D" uid="uid://dy5v21o8fbd2j" path="res://Assets/Food/es teh.png" id="4_bis12"]
+[ext_resource type="Script" uid="uid://csqwajdyea4eq" path="res://Scripts/refill_bar.gd" id="5_co48g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bis12"]
-size = Vector2(224, 298)
+size = Vector2(307, 325)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nxwx3"]
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bis12"]
+bg_color = Color(0.342476, 0.801995, 0.365825, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="EsTeh" type="Node2D"]
 
+[node name="EsTehComponent" type="Node2D" parent="."]
+script = ExtResource("1_2qfb5")
+
 [node name="BounceComponent" parent="." instance=ExtResource("1_hc5db")]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(40, -29)
+[node name="JarSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -30)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_nxwx3")
+
+[node name="EsTehSprite1" type="Sprite2D" parent="."]
+position = Vector2(-72.2, 32)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("4_bis12")
+
+[node name="EsTehSprite2" type="Sprite2D" parent="."]
+position = Vector2(-147.2, 32)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("4_bis12")
 
 [node name="TapComponent" parent="." instance=ExtResource("3_nxwx3")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TapComponent"]
-position = Vector2(44, -8)
+position = Vector2(-57.5, -27.5)
 shape = SubResource("RectangleShape2D_bis12")
+
+[node name="RefillBar" type="ProgressBar" parent="."]
+offset_left = -82.0
+offset_top = 142.0
+offset_right = 86.0
+offset_bottom = 167.0
+theme_override_styles/background = SubResource("StyleBoxFlat_nxwx3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bis12")
+value = 87.42
+show_percentage = false
+script = ExtResource("5_co48g")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true

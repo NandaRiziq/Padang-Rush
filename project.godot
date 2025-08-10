@@ -15,6 +15,10 @@ run/main_scene="uid://wpdjhugicopb"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="uid://hj6326f11xio"
 
+[autoload]
+
+Global="*res://Scripts/Singletons/global.gd"
+
 [display]
 
 window/size/viewport_width=1920

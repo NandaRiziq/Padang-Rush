@@ -1,10 +1,11 @@
 extends Node2D
 
-@export var receiver:Node #empty if only receiving
-@export_enum("Nasi", "Ayam Pop", "Rendang", "Telur", "Sayur", "Sambal", "Es Teh") var item_list:PackedStringArray = []
-
 @onready var tap_component: Area2D = $TapComponent
 @onready var bounce_component: Node = $BounceComponent
+
+@export var receiver:Node #empty if only receiving
+@export_enum("Nasi", "Ayam Pop", "Rendang", "Telur", "Sayur", "Sambal", "Es Teh")
+var item_list:PackedStringArray = []
 
 signal item_received
 signal item_send
@@ -20,7 +21,7 @@ func send_item():
 		for item in item_list:
 			receiver.receive_item(item)
 			print('Sent:', item)
-		item_send.emit()
+	item_send.emit()
 
 
 func receive_item(item:String):
