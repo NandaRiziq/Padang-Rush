@@ -2,7 +2,6 @@ extends ProgressBar
 
 @onready var customer: Node2D = $"../.."
 
-@export var max_patience : int = 100
 @export var decrease_amount : int = 5
 
 var is_depleted:bool = false
@@ -13,7 +12,7 @@ signal patience_depleted
 
 func _ready() -> void:
 	customer.order_ready.connect(start_patience_bar)
-	self.max_value = max_patience
+	self.max_value = Global.customer_patience
 	self.value = max_value
 
 

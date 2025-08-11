@@ -13,6 +13,7 @@ func _ready() -> void:
     timer.start()
 
     #spawn first customer
+    await get_tree().create_timer(2.0).timeout
     spawn_customer()
 
 

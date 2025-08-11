@@ -36,6 +36,11 @@ func _process(delta: float) -> void:
 					timer.wait_time = Global.spawn_delay
 					print("Spawn delay decreased to ", Global.spawn_delay)
 
+					# decrease customer patience every 2 level, until 50
+					if Global.customer_patience > 50:
+						Global.customer_patience -= 5
+						print("Customer patience decreased to ", Global.customer_patience)
+
 				# add allowed customers until max main dish amount
 				if Global.allowed_customers < 4:
 					Global.allowed_customers += 1

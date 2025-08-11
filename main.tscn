@@ -1,10 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://wpdjhugicopb"]
+[gd_scene load_steps=25 format=3 uid="uid://wpdjhugicopb"]
 
 [ext_resource type="Texture2D" uid="uid://dsxlohjlm6ce8" path="res://Assets/Environment/background.png" id="1_4c57u"]
 [ext_resource type="Script" uid="uid://c0d0wifwkaoup" path="res://Scripts/main.gd" id="1_cegan"]
 [ext_resource type="Texture2D" uid="uid://qhepkprtddwb" path="res://Assets/Environment/Table.png" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://cqqj827tloqdb" path="res://Scenes/rendang_plate.tscn" id="2_0xm2m"]
-[ext_resource type="Texture2D" uid="uid://qxbyyqp3o7jq" path="res://Assets/UI/suit_hearts.png" id="2_2cqfq"]
 [ext_resource type="FontFile" uid="uid://bqe7ac6nj2yab" path="res://Assets/Fredoka-Medium.ttf" id="2_yaehf"]
 [ext_resource type="PackedScene" uid="uid://bkuv3ckk1o34e" path="res://Scenes/serving_plate.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://d2fk7pbbm01eo" path="res://Scenes/ayam_pop_plate.tscn" id="4_1bvp3"]
@@ -20,14 +19,8 @@
 [ext_resource type="Script" uid="uid://c65ntgh2cph03" path="res://Scripts/customer_spawner.gd" id="8_ryguw"]
 [ext_resource type="PackedScene" uid="uid://cni01jfugvef3" path="res://Scenes/es_teh.tscn" id="11_efxa6"]
 [ext_resource type="PackedScene" uid="uid://bpx4pdmwju2k3" path="res://Scenes/trash_can.tscn" id="13_ycdy4"]
-[ext_resource type="PackedScene" uid="uid://cqvyxhucyqql8" path="res://Scenes/UI/pause_button.tscn" id="15_vivmo"]
+[ext_resource type="PackedScene" uid="uid://dtvk4x5ew6kor" path="res://Scenes/UI/in_game_ui.tscn" id="21_getpj"]
 [ext_resource type="Script" uid="uid://4sef0ollbfhn" path="res://Scripts/debugger_label.gd" id="22_ryguw"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_074og"]
-font = ExtResource("2_yaehf")
-font_size = 48
-outline_size = 20
-outline_color = Color(0, 0.760784, 0.372549, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_d13ii"]
 font = ExtResource("2_yaehf")
@@ -50,58 +43,6 @@ scale = Vector2(1.27279, 1.24414)
 texture = ExtResource("1_4c57u")
 metadata/_edit_lock_ = true
 
-[node name="UI Placeholder" type="Node2D" parent="."]
-
-[node name="Hearts" type="Node2D" parent="UI Placeholder"]
-position = Vector2(197, 86)
-
-[node name="Sprite2D" type="Sprite2D" parent="UI Placeholder/Hearts"]
-modulate = Color(0.928942, 0, 0.166904, 1)
-scale = Vector2(0.7, 0.7)
-texture = ExtResource("2_2cqfq")
-
-[node name="Sprite2D2" type="Sprite2D" parent="UI Placeholder/Hearts"]
-modulate = Color(0.929412, 0, 0.168627, 1)
-position = Vector2(80, 0)
-scale = Vector2(0.7, 0.7)
-texture = ExtResource("2_2cqfq")
-
-[node name="Sprite2D3" type="Sprite2D" parent="UI Placeholder/Hearts"]
-modulate = Color(0.929412, 0, 0.168627, 1)
-position = Vector2(160, 0)
-scale = Vector2(0.7, 0.7)
-texture = ExtResource("2_2cqfq")
-
-[node name="PauseButton" parent="UI Placeholder" instance=ExtResource("15_vivmo")]
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 35.0
-offset_top = 31.0
-offset_right = 135.0
-offset_bottom = 131.0
-grow_horizontal = 1
-grow_vertical = 1
-
-[node name="Money" type="Label" parent="UI Placeholder"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 1671.0
-offset_top = 20.0
-offset_right = 1903.0
-offset_bottom = 79.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Rp 999.999"
-label_settings = SubResource("LabelSettings_074og")
-horizontal_alignment = 2
-vertical_alignment = 1
-
 [node name="DebuggerLayer" type="CanvasLayer" parent="."]
 layer = 128
 
@@ -119,19 +60,19 @@ label_settings = SubResource("LabelSettings_d13ii")
 script = ExtResource("22_ryguw")
 
 [node name="TimeLabel" type="Label" parent="DebuggerLayer"]
-offset_left = 894.0
-offset_top = 47.0
-offset_right = 1027.0
-offset_bottom = 111.0
+offset_left = 167.0
+offset_top = 29.0
+offset_right = 300.0
+offset_bottom = 93.0
 text = "00:00"
 label_settings = SubResource("LabelSettings_cegan")
 script = ExtResource("7_82xsv")
 
 [node name="SpawnTimerBar" type="ProgressBar" parent="DebuggerLayer"]
-offset_left = 893.0
-offset_top = 111.0
-offset_right = 1030.0
-offset_bottom = 144.0
+offset_left = 166.0
+offset_top = 93.0
+offset_right = 303.0
+offset_bottom = 126.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_ryguw")
 value = 66.43
 show_percentage = false
@@ -233,3 +174,8 @@ item_list = ["Nasi"]
 [node name="TrashCan" parent="TableLayer" node_paths=PackedStringArray("serving_plate") instance=ExtResource("13_ycdy4")]
 position = Vector2(200, 590)
 serving_plate = NodePath("../ServingPlate")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="InGameUI" parent="UILayer" instance=ExtResource("21_getpj")]

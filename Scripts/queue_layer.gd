@@ -55,6 +55,8 @@ func check_order() -> void:
 		if customer:
 			if order_match(received_order, customer.order):
 				print('order match!')
+				# award coins for successful order
+				Global.add_money(100)
 				customer.walk_out_queue(true)
 				serving_plate.item_list.clear()
 				return  # Exit the function after finding a match

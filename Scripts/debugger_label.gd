@@ -13,7 +13,7 @@ func _process(_delta: float) -> void:
     Global.game_difficulty,
     queue_layer.available_slot.size(),
     Global.allowed_customers,
-    timer.wait_time,
+    Global.spawn_delay,
     Global.allowed_main_dish,
     queue_layer.taken_slot.size(),
 ]

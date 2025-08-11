@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkuv3ckk1o34e"]
+[gd_scene load_steps=9 format=3 uid="uid://bkuv3ckk1o34e"]
 
 [ext_resource type="Script" uid="uid://v36kqya6siku" path="res://Scripts/Components/send&receive_item_component.gd" id="1_4nxfn"]
 [ext_resource type="PackedScene" uid="uid://boh3ugknw6csa" path="res://Scenes/Components/bounce_component.tscn" id="1_67s43"]
 [ext_resource type="Texture2D" uid="uid://dihle3dfhyjhd" path="res://Assets/Object/plate.png" id="2_4nxfn"]
+[ext_resource type="Script" uid="uid://c2kdmncoj1fbg" path="res://Scripts/Components/serving_plate_component.gd" id="3_4k8gm"]
 [ext_resource type="PackedScene" uid="uid://ctofytujvrca7" path="res://Scenes/Components/tap_component.tscn" id="3_ms6vs"]
 [ext_resource type="Script" uid="uid://djaghefqvsh80" path="res://Scripts/food_label.gd" id="5_ms6vs"]
 
@@ -18,9 +19,14 @@ script = ExtResource("1_4nxfn")
 
 [node name="BounceComponent" parent="." instance=ExtResource("1_67s43")]
 
+[node name="ServingPlateComponent" type="Node" parent="."]
+script = ExtResource("3_4k8gm")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_4nxfn")
+
+[node name="FoodVisual" type="Node2D" parent="."]
 
 [node name="TapComponent" parent="." instance=ExtResource("3_ms6vs")]
 

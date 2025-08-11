@@ -69,8 +69,8 @@ func random_char() -> void:
 
 
 func random_order():
-	# 30% chance just drink order
-	if randf() < 0.3:
+	# 25% chance just drink order
+	if randf() < 0.25:
 		order.append("Es Teh")
 		return
 	
@@ -96,7 +96,7 @@ func random_order():
 	if randf() <= 0.6:
 		order.append("Sambal")
 	
-	# 50% chance include sayur
+	# 50% chance include es teh
 	if randf() <= 0.5:
 		order.append("Es Teh")
 
@@ -140,6 +140,8 @@ func walk_out_queue(is_succeed: bool):
 	else: # order failed
 		customer_sprite.texture = load(choosen_char[2]) # angry face
 		order_label.hide()
+		# lose one life on failed order
+		Global.lose_life(1)
 	choose_start_end_pos()
 	await walk_to(start_end_pos)
 	self.queue_free()

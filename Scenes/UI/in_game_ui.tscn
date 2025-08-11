@@ -1,0 +1,120 @@
+[gd_scene load_steps=7 format=3 uid="uid://dtvk4x5ew6kor"]
+
+[ext_resource type="Texture2D" uid="uid://qxbyyqp3o7jq" path="res://Assets/UI/suit_hearts.png" id="1_i0o8y"]
+[ext_resource type="PackedScene" uid="uid://cqvyxhucyqql8" path="res://Scenes/UI/pause_button.tscn" id="2_tckah"]
+[ext_resource type="FontFile" uid="uid://bqe7ac6nj2yab" path="res://Assets/Fredoka-Medium.ttf" id="3_qm78u"]
+[ext_resource type="Texture2D" uid="uid://bff1xmg35osnm" path="res://Assets/Object/Coin.png" id="3_tckah"]
+[ext_resource type="Script" uid="uid://e8gm4x2r5n0m" path="res://Scripts/UI/in_game_ui.gd" id="4_ui"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_074og"]
+font = ExtResource("3_qm78u")
+font_size = 48
+font_color = Color(0.992157, 0.737255, 0.0862745, 1)
+outline_size = 15
+outline_color = Color(0.427451, 0.223529, 0, 1)
+
+[node name="InGameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("4_ui")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 25
+
+[node name="Control" type="Control" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Hearts2" type="Control" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+mouse_filter = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Control/Hearts2"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -241.0
+offset_right = 151.0
+offset_bottom = 128.0
+grow_horizontal = 0
+scale = Vector2(0.6, 0.6)
+
+[node name="Hearts1" type="TextureRect" parent="MarginContainer/Control/Hearts2/HBoxContainer"]
+modulate = Color(1, 0.222965, 0.22643, 1)
+layout_mode = 2
+texture = ExtResource("1_i0o8y")
+
+[node name="Hearts2" type="TextureRect" parent="MarginContainer/Control/Hearts2/HBoxContainer"]
+modulate = Color(1, 0.222965, 0.22643, 1)
+layout_mode = 2
+texture = ExtResource("1_i0o8y")
+
+[node name="Hearts3" type="TextureRect" parent="MarginContainer/Control/Hearts2/HBoxContainer"]
+modulate = Color(1, 0.222965, 0.22643, 1)
+layout_mode = 2
+texture = ExtResource("1_i0o8y")
+
+[node name="PauseButton" parent="MarginContainer/Control" instance=ExtResource("2_tckah")]
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -76.5
+offset_top = 9.0
+offset_right = 76.5
+offset_bottom = 68.0
+grow_horizontal = 2
+
+[node name="Control" type="Control" parent="MarginContainer/Control/HBoxContainer"]
+layout_mode = 2
+
+[node name="Coin" type="TextureRect" parent="MarginContainer/Control/HBoxContainer/Control"]
+layout_mode = 2
+offset_left = -67.5
+offset_right = 956.5
+offset_bottom = 1024.0
+scale = Vector2(0.065, 0.065)
+texture = ExtResource("3_tckah")
+
+[node name="MoneyLabel" type="Label" parent="MarginContainer/Control/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "1000"
+label_settings = SubResource("LabelSettings_074og")
+horizontal_alignment = 1
+vertical_alignment = 1
