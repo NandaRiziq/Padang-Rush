@@ -16,9 +16,12 @@ offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_ggarj")
+theme_override_font_sizes/font_size = 72
+text = "I I"
 
 [node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(0.329159, 0.329158, 0.329158, 1)
+visible = false
+modulate = Color(0.415686, 0.152941, 0.0196078, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

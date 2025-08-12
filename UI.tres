@@ -1,31 +1,56 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://dgxpyjky8m3c4"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://dgxpyjky8m3c4"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5sq51"]
+[ext_resource type="FontFile" uid="uid://bqe7ac6nj2yab" path="res://Assets/Fredoka-Medium.ttf" id="1_kxbjr"]
+[ext_resource type="Texture2D" uid="uid://d1ur702pmjvpk" path="res://Assets/kenney_ui-pack/PNG/yellow_button12.png" id="2_1iots"]
+[ext_resource type="Texture2D" uid="uid://ckeyjswnqbapc" path="res://Assets/kenney_ui-pack/PNG/yellow_button11.png" id="2_w50aj"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h6ycm"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w50aj"]
+texture = ExtResource("2_w50aj")
+texture_margin_left = 6.0
+texture_margin_top = 4.0
+texture_margin_right = 6.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(0, 0, 49, 49)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kxbjr"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1iots"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5sq51"]
-bg_color = Color(0.442911, 0.442911, 0.442911, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w2jbw"]
+texture = ExtResource("2_w50aj")
+texture_margin_left = 6.0
+texture_margin_top = 4.0
+texture_margin_right = 6.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(0, 0, 49, 49)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1iots"]
+texture = ExtResource("2_w50aj")
+texture_margin_left = 6.0
+texture_margin_top = 4.0
+texture_margin_right = 6.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(0, 0, 49, 49)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6r4ue"]
+texture = ExtResource("2_1iots")
+texture_margin_left = 6.0
+texture_margin_top = 4.0
+texture_margin_right = 6.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(0, 0, 49, 45)
 
 [resource]
-Button/fonts/font = null
-Button/styles/focus = SubResource("StyleBoxEmpty_5sq51")
-Button/styles/hover = SubResource("StyleBoxFlat_h6ycm")
-Button/styles/normal = SubResource("StyleBoxFlat_kxbjr")
-Button/styles/pressed = SubResource("StyleBoxFlat_5sq51")
+Button/colors/font_color = Color(0.859073, 0.361491, 0.168102, 1)
+Button/colors/font_outline_color = Color(0.415686, 0.152941, 0.0196078, 1)
+Button/constants/outline_size = 17
+Button/font_sizes/font_size = 49
+Button/fonts/font = ExtResource("1_kxbjr")
+Button/styles/disabled = SubResource("StyleBoxTexture_w50aj")
+Button/styles/focus = SubResource("StyleBoxEmpty_1iots")
+Button/styles/hover = SubResource("StyleBoxTexture_w2jbw")
+Button/styles/normal = SubResource("StyleBoxTexture_1iots")
+Button/styles/pressed = SubResource("StyleBoxTexture_6r4ue")
+Label/colors/font_color = Color(0.858824, 0.360784, 0.168627, 1)
+Label/colors/font_outline_color = Color(0.415686, 0.152941, 0.0196078, 1)
+Label/constants/outline_size = 44
+Label/font_sizes/font_size = 90
+Label/fonts/font = ExtResource("1_kxbjr")

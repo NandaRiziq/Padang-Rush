@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://qxbyyqp3o7jq" path="res://Assets/UI/suit_hearts.png" id="1_i0o8y"]
 [ext_resource type="PackedScene" uid="uid://cqvyxhucyqql8" path="res://Scenes/UI/pause_button.tscn" id="2_tckah"]
 [ext_resource type="FontFile" uid="uid://bqe7ac6nj2yab" path="res://Assets/Fredoka-Medium.ttf" id="3_qm78u"]
-[ext_resource type="Texture2D" uid="uid://bff1xmg35osnm" path="res://Assets/Object/Coin.png" id="3_tckah"]
+[ext_resource type="Texture2D" uid="uid://5q0tjb8478vs" path="res://Assets/Object/Coin-50x50.png" id="4_qm78u"]
 [ext_resource type="Script" uid="uid://e8gm4x2r5n0m" path="res://Scripts/UI/in_game_ui.gd" id="4_ui"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_074og"]
@@ -94,9 +94,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -76.5
+offset_left = -29.0
 offset_top = 9.0
-offset_right = 76.5
+offset_right = 124.0
 offset_bottom = 68.0
 grow_horizontal = 2
 
@@ -109,7 +109,7 @@ offset_left = -67.5
 offset_right = 956.5
 offset_bottom = 1024.0
 scale = Vector2(0.065, 0.065)
-texture = ExtResource("3_tckah")
+texture = ExtResource("4_qm78u")
 
 [node name="MoneyLabel" type="Label" parent="MarginContainer/Control/HBoxContainer"]
 layout_mode = 2

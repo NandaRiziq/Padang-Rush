@@ -45,6 +45,7 @@ metadata/_edit_lock_ = true
 
 [node name="DebuggerLayer" type="CanvasLayer" parent="."]
 layer = 128
+visible = false
 
 [node name="DebuggerLabel" type="Label" parent="DebuggerLayer"]
 offset_left = 258.0

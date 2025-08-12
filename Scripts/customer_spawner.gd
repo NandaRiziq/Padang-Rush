@@ -12,6 +12,9 @@ func _ready() -> void:
     timer.wait_time = Global.spawn_delay
     timer.start()
 
+    # stop spawning when game over
+    Global.game_over.connect(_on_game_over)
+
     #spawn first customer
     await get_tree().create_timer(2.0).timeout
     spawn_customer()
@@ -28,3 +31,8 @@ func spawn_customer() -> void:
         new_customer.queue_layer = queue_layer
         self.reparent(off_queue_layer, true)
         add_child(new_customer)
+
+
+func _on_game_over() -> void:
+    if is_instance_valid(timer):
+        timer.stop()

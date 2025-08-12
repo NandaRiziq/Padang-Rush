@@ -34,6 +34,14 @@ var characters: Array = [
 	],
 ]
 
+### particle asset
+var particle_assets: Array = [
+	"res://Assets/Object/Coin-50x50.png",
+	"res://Assets/Object/angry-emoji-50x50.png"
+]
+
+@onready var particles: GPUParticles2D = $GPUParticles2D
+
 
 func _ready() -> void:
 	#wait for the queue slot ready
@@ -137,11 +145,13 @@ func walk_out_queue(is_succeed: bool):
 		customer_sprite.texture = load(choosen_char[1]) # happy face
 		order_label.hide()
 		patience_bar.stop_patience_bar()
+		_spawn_feedback_particles(particle_assets[0])
 	else: # order failed
 		customer_sprite.texture = load(choosen_char[2]) # angry face
 		order_label.hide()
 		# lose one life on failed order
 		Global.lose_life(1)
+		_spawn_feedback_particles(particle_assets[1])
 	choose_start_end_pos()
 	await walk_to(start_end_pos)
 	self.queue_free()
@@ -151,3 +161,15 @@ func walk_out_queue(is_succeed: bool):
 func choose_queue_slot() -> void:
 	chosen_queue_slot = queue_layer.available_slot[randi_range(0, len(queue_layer.available_slot)-1)]
 	queue_layer.use_slot(chosen_queue_slot)
+
+
+func _spawn_feedback_particles(texture_path: String) -> void:
+	if not is_instance_valid(particles):
+		return
+	var tex: Texture2D = load(texture_path)
+	if tex:
+		particles.texture = tex
+	# Just emit using node-configured settings
+	particles.emitting = false
+	particles.restart()
+	particles.emitting = true

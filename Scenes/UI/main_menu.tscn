@@ -50,5 +50,4 @@ offset_bottom = -250.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("2_i2xx2")
-theme_override_font_sizes/font_size = 51
-text = "START"
+text = "PLAY"

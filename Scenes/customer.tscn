@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://6vkc4odul5el"]
+[gd_scene load_steps=14 format=3 uid="uid://6vkc4odul5el"]
 
 [ext_resource type="Texture2D" uid="uid://c72wckv4l4kdp" path="res://Assets/Character/Char1.png" id="1_fp685"]
 [ext_resource type="Script" uid="uid://bjihja7n227m5" path="res://Scripts/customer.gd" id="1_qf3me"]
 [ext_resource type="PackedScene" uid="uid://dl3a1wm0ondxa" path="res://Scenes/order_label.tscn" id="2_7c3kf"]
 [ext_resource type="Script" uid="uid://buhhxipl6f5ic" path="res://Scripts/patience_bar.gd" id="3_0v30w"]
 [ext_resource type="Script" uid="uid://bkvwqkcwl0bxm" path="res://Scripts/customer_animation.gd" id="5_vkxjs"]
+[ext_resource type="Texture2D" uid="uid://5q0tjb8478vs" path="res://Assets/Object/Coin-50x50.png" id="6_fhub2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7c3kf"]
 bg_color = Color(0.226707, 0.226708, 0.226707, 1)
@@ -76,6 +77,14 @@ _data = {
 &"walk": SubResource("Animation_fhub2")
 }
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2o0mk"]
+particle_flag_disable_z = true
+direction = Vector3(0, 200, 0)
+spread = 180.0
+initial_velocity_min = 250.0
+initial_velocity_max = 450.0
+gravity = Vector3(0, 900, 0)
+
 [node name="Customer" type="Node2D"]
 scale = Vector2(0.6, 0.6)
 script = ExtResource("1_qf3me")
@@ -107,3 +116,17 @@ libraries = {
 &"": SubResource("AnimationLibrary_fhub2")
 }
 script = ExtResource("5_vkxjs")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, -475)
+emitting = false
+amount = 10
+texture = ExtResource("6_fhub2")
+lifetime = 1.5
+one_shot = true
+preprocess = 0.1
+explosiveness = 0.9
+randomness = 1.0
+fixed_fps = 60
+visibility_rect = Rect2(-256, -256, 512, 512)
+process_material = SubResource("ParticleProcessMaterial_2o0mk")
