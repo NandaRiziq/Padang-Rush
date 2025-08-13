@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://2p5i50qx087o"
+path="res://.godot/imported/In Game BGM.mp3-c8f83dce8f2ab12a62f2190eb05c4b8b.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/In Game BGM.mp3"
+dest_files=["res://.godot/imported/In Game BGM.mp3-c8f83dce8f2ab12a62f2190eb05c4b8b.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

@@ -7,6 +7,7 @@ extends Node2D
 @onready var customer_animation: AnimationPlayer = $CustomerAnimation
 @onready var off_queue_layer: CanvasLayer = get_node("/root/Main/OffQueueLayer")
 @onready var walk_out_layer: CanvasLayer = get_node("/root/Main/WalkOutLayer")
+@onready var sfx_patience: AudioStreamPlayer = $SFX_Patience
 
 @export var walk_duration: float = 1.0
 @export var walk_speed: float = 400.0
@@ -35,9 +36,9 @@ var characters: Array = [
 ]
 
 ### particle asset
-var particle_assets: Array = [
-	"res://Assets/Object/Coin-50x50.png",
-	"res://Assets/Object/angry-emoji-50x50.png"
+var particle_textures: Array[Texture2D] = [
+	preload("res://Assets/Object/Coin-50x50.png"),
+	preload("res://Assets/Object/angry-emoji-50x50.png")
 ]
 
 @onready var particles: GPUParticles2D = $GPUParticles2D
@@ -45,6 +46,8 @@ var particle_assets: Array = [
 
 func _ready() -> void:
 	#wait for the queue slot ready
+	# Pre-warm particle system next frame to avoid first-use stutter
+	call_deferred("_prewarm_particles")
 	if queue_layer == null:
 		await get_tree().process_frame
 		queue_layer = get_tree().get_first_node_in_group("queue_layer")
@@ -52,7 +55,7 @@ func _ready() -> void:
 		await queue_layer.queue_slot_ready
 	
 	# customer walkout upon patience depleted
-	patience_bar.patience_depleted.connect(walk_out_queue.bind(false))
+	patience_bar.patience_depleted.connect(_on_patience_depleted)
 	
 	# choose start position
 	choose_start_end_pos()
@@ -70,6 +73,14 @@ func _ready() -> void:
 	
 	# walk animation
 	walk_to_queue()
+
+
+func _on_patience_depleted() -> void:
+	# Do not play patience SFX if game is already over
+	if not Global.is_game_over:
+		if is_instance_valid(sfx_patience):
+			sfx_patience.play()
+	walk_out_queue(false)
 
 
 func random_char() -> void:
@@ -145,13 +156,13 @@ func walk_out_queue(is_succeed: bool):
 		customer_sprite.texture = load(choosen_char[1]) # happy face
 		order_label.hide()
 		patience_bar.stop_patience_bar()
-		_spawn_feedback_particles(particle_assets[0])
+		_spawn_feedback_particles_tex(particle_textures[0])
 	else: # order failed
 		customer_sprite.texture = load(choosen_char[2]) # angry face
 		order_label.hide()
 		# lose one life on failed order
 		Global.lose_life(1)
-		_spawn_feedback_particles(particle_assets[1])
+		_spawn_feedback_particles_tex(particle_textures[1])
 	choose_start_end_pos()
 	await walk_to(start_end_pos)
 	self.queue_free()
@@ -164,12 +175,42 @@ func choose_queue_slot() -> void:
 
 
 func _spawn_feedback_particles(texture_path: String) -> void:
-	if not is_instance_valid(particles):
-		return
+	# Backward-compatible wrapper for code paths that pass a resource path
 	var tex: Texture2D = load(texture_path)
-	if tex:
-		particles.texture = tex
-	# Just emit using node-configured settings
+	_spawn_feedback_particles_tex(tex)
+
+
+func _spawn_feedback_particles_tex(tex: Texture2D) -> void:
+	if not is_instance_valid(particles) or tex == null:
+		return
+	particles.texture = tex
+	# Emit using node-configured settings
 	particles.emitting = false
 	particles.restart()
 	particles.emitting = true
+
+
+func _prewarm_particles() -> void:
+	# Run an invisible, minimal emit to compile shaders and upload textures
+	if not is_instance_valid(particles):
+		return
+	var original_visible: bool = particles.visible
+	var original_amount: int = particles.amount
+	var original_one_shot: bool = particles.one_shot
+	particles.visible = false
+	particles.amount = 1
+	particles.one_shot = true
+	# Warm coin texture
+	particles.texture = particle_textures[0]
+	particles.emitting = true
+	await get_tree().process_frame
+	particles.emitting = false
+	# Warm angry texture
+	particles.texture = particle_textures[1]
+	particles.emitting = true
+	await get_tree().process_frame
+	particles.emitting = false
+	# Restore settings
+	particles.amount = original_amount
+	particles.one_shot = original_one_shot
+	particles.visible = original_visible

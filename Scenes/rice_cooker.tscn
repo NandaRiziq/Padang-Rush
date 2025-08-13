@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwsuey3hveipf"]
+[gd_scene load_steps=6 format=3 uid="uid://cwsuey3hveipf"]
 
 [ext_resource type="PackedScene" uid="uid://boh3ugknw6csa" path="res://Scenes/Components/bounce_component.tscn" id="1_at584"]
 [ext_resource type="Texture2D" uid="uid://cyui0832i8u63" path="res://Assets/Object/rice cooker-closed.png" id="2_41a3j"]
 [ext_resource type="PackedScene" uid="uid://ctofytujvrca7" path="res://Scenes/Components/tap_component.tscn" id="3_41a3j"]
+[ext_resource type="AudioStream" uid="uid://cp48pmyq6yaig" path="res://Assets/Sounds/ceramic_plate_clank2.wav" id="4_sfx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_41a3j"]
 size = Vector2(301, 335)
@@ -20,3 +21,7 @@ texture = ExtResource("2_41a3j")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TapComponent"]
 position = Vector2(-1.5, 6.5)
 shape = SubResource("RectangleShape2D_41a3j")
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_sfx")
+bus = &"SFX"

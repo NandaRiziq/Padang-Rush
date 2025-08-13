@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var timer: Timer = $OffQueueLayer/CustomerSpawner/Timer
+@onready var bgm: AudioStreamPlayer = $BGM
 
 var menu: menu_resource = menu_resource.new()
 var elapsed_time: float = 0.0
@@ -14,6 +15,9 @@ signal second_passed
 
 func _ready() -> void:
 	start_timer()
+	# Ensure in-game BGM is playing if not set to autoplay
+	if is_instance_valid(bgm) and not bgm.playing:
+		bgm.play()
 
 
 func _process(delta: float) -> void:

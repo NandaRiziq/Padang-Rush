@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://wpdjhugicopb"]
+[gd_scene load_steps=28 format=3 uid="uid://wpdjhugicopb"]
 
 [ext_resource type="Texture2D" uid="uid://dsxlohjlm6ce8" path="res://Assets/Environment/background.png" id="1_4c57u"]
 [ext_resource type="Script" uid="uid://c0d0wifwkaoup" path="res://Scripts/main.gd" id="1_cegan"]
@@ -21,6 +21,9 @@
 [ext_resource type="PackedScene" uid="uid://bpx4pdmwju2k3" path="res://Scenes/trash_can.tscn" id="13_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://dtvk4x5ew6kor" path="res://Scenes/UI/in_game_ui.tscn" id="21_getpj"]
 [ext_resource type="Script" uid="uid://4sef0ollbfhn" path="res://Scripts/debugger_label.gd" id="22_ryguw"]
+[ext_resource type="AudioStream" uid="uid://2p5i50qx087o" path="res://Assets/Sounds/In Game BGM.mp3" id="23_bgm"]
+[ext_resource type="AudioStream" uid="uid://46hsinbmkgpx" path="res://Assets/Sounds/Cafeteria.wav" id="24_1u8w0"]
+[ext_resource type="AudioStream" uid="uid://dgnp21tknm3ds" path="res://Assets/Sounds/caps hit with wood 20.wav" id="24_sfx_success"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_d13ii"]
 font = ExtResource("2_yaehf")
@@ -117,6 +120,10 @@ position = Vector2(1620, 634)
 script = ExtResource("7_074og")
 metadata/_edit_lock_ = true
 
+[node name="SFX_Success" type="AudioStreamPlayer" parent="QueueLayer"]
+stream = ExtResource("24_sfx_success")
+bus = &"SFX"
+
 [node name="TableLayer" type="CanvasLayer" parent="."]
 layer = 10
 
@@ -180,3 +187,14 @@ serving_plate = NodePath("../ServingPlate")
 layer = 128
 
 [node name="InGameUI" parent="UILayer" instance=ExtResource("21_getpj")]
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_bgm")
+autoplay = true
+bus = &"BGM"
+parameters/looping = true
+
+[node name="Ambiance" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("24_1u8w0")
+autoplay = true
+bus = &"BGM"

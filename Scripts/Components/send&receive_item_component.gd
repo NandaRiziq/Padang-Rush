@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var tap_component: Area2D = $TapComponent
 @onready var bounce_component: Node = $BounceComponent
+@onready var sfx_player: AudioStreamPlayer = $SFX
 
 @export var receiver:Node #empty if only receiving
 @export_enum("Nasi", "Ayam Pop", "Rendang", "Telur", "Sayur", "Sambal", "Es Teh")
@@ -17,6 +18,8 @@ func _ready() -> void:
 
 
 func send_item():
+	# play tap sfx depending on the tapped node
+	_play_tap_sfx()
 	if receiver:
 		for item in item_list:
 			receiver.receive_item(item)
@@ -33,3 +36,9 @@ func receive_item(item:String):
 		item_received.emit()
 	print('Received:', item)
 	print(item_list,'\n')
+
+
+func _play_tap_sfx() -> void:
+	if not is_instance_valid(sfx_player):
+		return
+	sfx_player.play()

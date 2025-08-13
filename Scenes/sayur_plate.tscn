@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cb27jdik8673e"]
+[gd_scene load_steps=7 format=3 uid="uid://cb27jdik8673e"]
 
 [ext_resource type="Script" uid="uid://v36kqya6siku" path="res://Scripts/Components/send&receive_item_component.gd" id="1_1y1so"]
 [ext_resource type="PackedScene" uid="uid://boh3ugknw6csa" path="res://Scenes/Components/bounce_component.tscn" id="1_tg82l"]
 [ext_resource type="Texture2D" uid="uid://ck8en6y3r8fy" path="res://Assets/Food/daun.png" id="2_shwdj"]
 [ext_resource type="PackedScene" uid="uid://ctofytujvrca7" path="res://Scenes/Components/tap_component.tscn" id="3_shwdj"]
+[ext_resource type="AudioStream" uid="uid://cp48pmyq6yaig" path="res://Assets/Sounds/ceramic_plate_clank2.wav" id="4_sfx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_shwdj"]
 radius = 105.5
@@ -24,3 +25,7 @@ texture = ExtResource("2_shwdj")
 position = Vector2(-2, 15.5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_shwdj")
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_sfx")
+bus = &"SFX"

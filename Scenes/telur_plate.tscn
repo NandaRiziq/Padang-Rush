@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c7l5v3dxl0dts"]
+[gd_scene load_steps=6 format=3 uid="uid://c7l5v3dxl0dts"]
 
 [ext_resource type="PackedScene" uid="uid://boh3ugknw6csa" path="res://Scenes/Components/bounce_component.tscn" id="1_p2uos"]
 [ext_resource type="Texture2D" uid="uid://0c2ctabbxkw0" path="res://Assets/Food/telor.png" id="2_8w1br"]
 [ext_resource type="PackedScene" uid="uid://ctofytujvrca7" path="res://Scenes/Components/tap_component.tscn" id="3_b0flu"]
+[ext_resource type="AudioStream" uid="uid://cp48pmyq6yaig" path="res://Assets/Sounds/ceramic_plate_clank2.wav" id="4_sfx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p2uos"]
 radius = 123.5
@@ -23,3 +24,7 @@ texture = ExtResource("2_8w1br")
 position = Vector2(-5, 28)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_p2uos")
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_sfx")
+bus = &"SFX"

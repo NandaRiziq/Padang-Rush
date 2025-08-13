@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cni01jfugvef3"]
+[gd_scene load_steps=12 format=3 uid="uid://cni01jfugvef3"]
 
 [ext_resource type="Script" uid="uid://bcbpbs7jleuxq" path="res://Scripts/Components/es_teh_component.gd" id="1_2qfb5"]
 [ext_resource type="PackedScene" uid="uid://boh3ugknw6csa" path="res://Scenes/Components/bounce_component.tscn" id="1_hc5db"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://ctofytujvrca7" path="res://Scenes/Components/tap_component.tscn" id="3_nxwx3"]
 [ext_resource type="Texture2D" uid="uid://dy5v21o8fbd2j" path="res://Assets/Food/es teh.png" id="4_bis12"]
 [ext_resource type="Script" uid="uid://csqwajdyea4eq" path="res://Scripts/refill_bar.gd" id="5_co48g"]
+[ext_resource type="AudioStream" uid="uid://du706g6j1617o" path="res://Assets/Sounds/teapot on table 17.wav" id="6_sfx"]
+[ext_resource type="AudioStream" uid="uid://dckqh3hggrs52" path="res://Assets/Sounds/glass_clank.wav" id="7_sfx_tap"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bis12"]
 size = Vector2(307, 325)
@@ -65,3 +67,10 @@ script = ExtResource("5_co48g")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.5
 autostart = true
+
+[node name="SFX_Refill" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_sfx")
+volume_db = -3.0
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_sfx_tap")

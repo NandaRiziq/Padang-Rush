@@ -5,6 +5,7 @@ extends CanvasLayer
 @onready var queue_pos_3: Marker2D = $QueuePos3
 @onready var queue_pos_4: Marker2D = $QueuePos4
 @onready var serving_plate: Node2D = $"../TableLayer/ServingPlate"
+@onready var sfx_player: AudioStreamPlayer = $SFX_Success
 
 var available_slot: Array
 var taken_slot: Array
@@ -23,6 +24,8 @@ func _ready() -> void:
 	queue_pos_4
 	]
 	call_deferred("emit_signal", "queue_slot_ready")
+
+	# sfx player provided in scene as SFX_Success
 
 
 func use_slot(slot) -> void:
@@ -57,6 +60,7 @@ func check_order() -> void:
 				print('order match!')
 				# award coins for successful order
 				Global.add_money(100)
+				_play_order_success_sfx()
 				customer.walk_out_queue(true)
 				serving_plate.item_list.clear()
 				return  # Exit the function after finding a match
@@ -73,3 +77,9 @@ func order_match(order1: Array, order2: Array) -> bool:
 	sorted2.sort()
 	
 	return sorted1 == sorted2
+
+
+func _play_order_success_sfx() -> void:
+	if not is_instance_valid(sfx_player):
+		return
+	sfx_player.play()

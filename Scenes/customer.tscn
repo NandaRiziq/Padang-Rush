@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://6vkc4odul5el"]
+[gd_scene load_steps=15 format=3 uid="uid://6vkc4odul5el"]
 
 [ext_resource type="Texture2D" uid="uid://c72wckv4l4kdp" path="res://Assets/Character/Char1.png" id="1_fp685"]
 [ext_resource type="Script" uid="uid://bjihja7n227m5" path="res://Scripts/customer.gd" id="1_qf3me"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://buhhxipl6f5ic" path="res://Scripts/patience_bar.gd" id="3_0v30w"]
 [ext_resource type="Script" uid="uid://bkvwqkcwl0bxm" path="res://Scripts/customer_animation.gd" id="5_vkxjs"]
 [ext_resource type="Texture2D" uid="uid://5q0tjb8478vs" path="res://Assets/Object/Coin-50x50.png" id="6_fhub2"]
+[ext_resource type="AudioStream" uid="uid://dmifxcl1vcdg7" path="res://Assets/Sounds/beads few dropped into sack 33.wav" id="7_sfx_patience"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7c3kf"]
 bg_color = Color(0.226707, 0.226708, 0.226707, 1)
@@ -130,3 +131,8 @@ randomness = 1.0
 fixed_fps = 60
 visibility_rect = Rect2(-256, -256, 512, 512)
 process_material = SubResource("ParticleProcessMaterial_2o0mk")
+
+[node name="SFX_Patience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_sfx_patience")
+volume_db = 5.0
+bus = &"SFX"

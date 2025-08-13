@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://dtvk4x5ew6kor"]
+[gd_scene load_steps=9 format=3 uid="uid://dtvk4x5ew6kor"]
 
 [ext_resource type="Texture2D" uid="uid://qxbyyqp3o7jq" path="res://Assets/UI/suit_hearts.png" id="1_i0o8y"]
 [ext_resource type="PackedScene" uid="uid://cqvyxhucyqql8" path="res://Scenes/UI/pause_button.tscn" id="2_tckah"]
 [ext_resource type="FontFile" uid="uid://bqe7ac6nj2yab" path="res://Assets/Fredoka-Medium.ttf" id="3_qm78u"]
 [ext_resource type="Texture2D" uid="uid://5q0tjb8478vs" path="res://Assets/Object/Coin-50x50.png" id="4_qm78u"]
 [ext_resource type="Script" uid="uid://e8gm4x2r5n0m" path="res://Scripts/UI/in_game_ui.gd" id="4_ui"]
+[ext_resource type="AudioStream" uid="uid://r7wlyh7oy85b" path="res://Assets/Sounds/slide whistle down 4.wav" id="5_sfx_life"]
+[ext_resource type="AudioStream" uid="uid://dfllkybslni0b" path="res://Assets/Sounds/trumpet sad 3.wav" id="6_sfx_gameover"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_074og"]
 font = ExtResource("3_qm78u")
@@ -105,9 +107,10 @@ layout_mode = 2
 
 [node name="Coin" type="TextureRect" parent="MarginContainer/Control/HBoxContainer/Control"]
 layout_mode = 2
-offset_left = -67.5
-offset_right = 956.5
-offset_bottom = 1024.0
+offset_left = -52.0
+offset_top = 8.0
+offset_right = 724.0
+offset_bottom = 784.0
 scale = Vector2(0.065, 0.065)
 texture = ExtResource("4_qm78u")
 
@@ -118,3 +121,12 @@ text = "1000"
 label_settings = SubResource("LabelSettings_074og")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SFX_LifeDown" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_sfx_life")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="SFX_GameOver" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_sfx_gameover")
+bus = &"SFX"

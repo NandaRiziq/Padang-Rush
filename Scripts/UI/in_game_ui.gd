@@ -7,6 +7,8 @@ extends Control
 @onready var pause_button: Button = $MarginContainer/Control/PauseButton
 @onready var hearts_container: HBoxContainer = $MarginContainer/Control/Hearts2/HBoxContainer
 @onready var money_container: HBoxContainer = $MarginContainer/Control/HBoxContainer
+@onready var sfx_life_down: AudioStreamPlayer = $SFX_LifeDown
+@onready var sfx_game_over: AudioStreamPlayer = $SFX_GameOver
 
 var pause_screen_scene: PackedScene = preload("res://Scenes/UI/pause_screen.tscn")
 var final_screen_scene: PackedScene = preload("res://Scenes/UI/final_screen.tscn")
@@ -17,11 +19,16 @@ var hearts_bounce: Node
 
 var heart_full_color: Color = Color(1, 0.222965, 0.22643, 1)
 var heart_empty_color: Color = Color8(67, 0, 3)
+var previous_life: int = -1
+var has_initialized_life: bool = false
 
 
 func _ready() -> void:
     # initialize from Global
     _update_money(Global.player_money)
+    # prime life tracking before first UI update so no SFX on initial paint
+    previous_life = Global.player_life
+    has_initialized_life = true
     _update_hearts(Global.player_life)
 
 
@@ -60,6 +67,11 @@ func _update_hearts(life: int) -> void:
         heart.modulate = heart_full_color if i < life else heart_empty_color
     if is_instance_valid(hearts_bounce):
         hearts_bounce.bounce()
+    # play life down sfx only when life decreased and still above zero
+    if has_initialized_life and previous_life != -1:
+        if life > 0 and life < previous_life and is_instance_valid(sfx_life_down):
+            sfx_life_down.play()
+    previous_life = life
 
 
 func _on_pause_button_pressed() -> void:
@@ -95,31 +107,43 @@ func _on_pause_button_pressed() -> void:
 
 
 func _on_game_over() -> void:
+    if is_instance_valid(sfx_game_over):
+        sfx_game_over.play()
+
+    # stop in-game BGM even though main scene keeps running
+    var main_bgm: AudioStreamPlayer = get_node_or_null("/root/Main/BGM")
+    if is_instance_valid(main_bgm):
+        main_bgm.stop()
+
     # Prevent duplicates
     if get_node_or_null("FinalScreen"):
         return
+
     var final_screen: Control = final_screen_scene.instantiate()
     final_screen.name = "FinalScreen"
     final_screen.process_mode = Node.PROCESS_MODE_INHERIT
     final_screen.mouse_filter = Control.MOUSE_FILTER_STOP
     add_child(final_screen)
+
     # Set final score label
     var score_label: Label = final_screen.get_node_or_null("Control/VBoxContainer/ScoreContainer/HBoxContainer/Score")
     if is_instance_valid(score_label):
         score_label.text = str(Global.player_money)
+
     # Wire buttons
     var restart_btn: Button = final_screen.get_node_or_null("Control/VBoxContainer/ButtonContainer/Restart")
     var main_menu_btn: Button = final_screen.get_node_or_null("Control/VBoxContainer/ButtonContainer/Button")
+    
     if is_instance_valid(restart_btn):
         restart_btn.pressed.connect(func() -> void:
             get_tree().paused = false
             Global.reset_game_state()
             get_tree().change_scene_to_file("res://main.tscn")
         )
+
     if is_instance_valid(main_menu_btn):
         main_menu_btn.pressed.connect(func() -> void:
             get_tree().paused = false
             Global.reset_game_state()
             get_tree().change_scene_to_file("res://Scenes/UI/main_menu.tscn")
         )
-    # Do not pause the game on game over; keep scene running for presentation

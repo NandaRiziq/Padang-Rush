@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dgnp21tknm3ds"
+path="res://.godot/imported/caps hit with wood 20.wav-3c27b1df65b2eb50b9b46f3644210593.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/caps hit with wood 20.wav"
+dest_files=["res://.godot/imported/caps hit with wood 20.wav-3c27b1df65b2eb50b9b46f3644210593.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
