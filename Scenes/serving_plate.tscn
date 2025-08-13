@@ -1,11 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://bkuv3ckk1o34e"]
+[gd_scene load_steps=16 format=3 uid="uid://bkuv3ckk1o34e"]
 
 [ext_resource type="Script" uid="uid://v36kqya6siku" path="res://Scripts/Components/send&receive_item_component.gd" id="1_4nxfn"]
 [ext_resource type="PackedScene" uid="uid://boh3ugknw6csa" path="res://Scenes/Components/bounce_component.tscn" id="1_67s43"]
 [ext_resource type="Texture2D" uid="uid://dihle3dfhyjhd" path="res://Assets/Object/plate.png" id="2_4nxfn"]
 [ext_resource type="Script" uid="uid://c2kdmncoj1fbg" path="res://Scripts/Components/serving_plate_component.gd" id="3_4k8gm"]
 [ext_resource type="PackedScene" uid="uid://ctofytujvrca7" path="res://Scenes/Components/tap_component.tscn" id="3_ms6vs"]
+[ext_resource type="Texture2D" uid="uid://dh6ve2amf3agx" path="res://Assets/Food/rice.png" id="5_fim2h"]
+[ext_resource type="Texture2D" uid="uid://c1mt5xqxkmidq" path="res://Assets/Food/ayam-single.png" id="5_ksd6e"]
 [ext_resource type="Script" uid="uid://djaghefqvsh80" path="res://Scripts/food_label.gd" id="5_ms6vs"]
+[ext_resource type="Texture2D" uid="uid://dy5v21o8fbd2j" path="res://Assets/Food/es teh.png" id="5_wjdxn"]
+[ext_resource type="Texture2D" uid="uid://kkff7i3jv014" path="res://Assets/Food/telor-single.png" id="6_77edg"]
+[ext_resource type="Texture2D" uid="uid://diglvwd4sgxpi" path="res://Assets/Food/rendang-single.png" id="7_qfgr7"]
+[ext_resource type="Texture2D" uid="uid://lbr3qamxmak6" path="res://Assets/Food/daun-single.png" id="9_wjdxn"]
+[ext_resource type="Texture2D" uid="uid://cqlebklfodket" path="res://Assets/Food/sambel-single.png" id="10_vtv0v"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_67s43"]
 radius = 99.0
@@ -28,6 +35,42 @@ texture = ExtResource("2_4nxfn")
 
 [node name="FoodVisual" type="Node2D" parent="."]
 
+[node name="EsTeh" type="Sprite2D" parent="FoodVisual"]
+position = Vector2(-54, -131)
+scale = Vector2(0.117188, 0.117188)
+texture = ExtResource("5_wjdxn")
+
+[node name="AyamPop" type="Sprite2D" parent="FoodVisual"]
+position = Vector2(58, -58)
+rotation = -0.198615
+scale = Vector2(0.210938, 0.210938)
+texture = ExtResource("5_ksd6e")
+
+[node name="Nasi" type="Sprite2D" parent="FoodVisual"]
+position = Vector2(0, -11)
+scale = Vector2(0.164063, 0.164063)
+texture = ExtResource("5_fim2h")
+
+[node name="Telur" type="Sprite2D" parent="FoodVisual"]
+position = Vector2(-82, -7)
+scale = Vector2(0.210938, 0.210938)
+texture = ExtResource("6_77edg")
+
+[node name="Rendang" type="Sprite2D" parent="FoodVisual"]
+position = Vector2(-49, 42)
+scale = Vector2(0.101563, 0.101563)
+texture = ExtResource("7_qfgr7")
+
+[node name="Sayur" type="Sprite2D" parent="FoodVisual"]
+position = Vector2(80, 17)
+scale = Vector2(0.128906, 0.128906)
+texture = ExtResource("9_wjdxn")
+
+[node name="Sambal" type="Sprite2D" parent="FoodVisual"]
+position = Vector2(39, 49)
+scale = Vector2(0.101563, 0.101563)
+texture = ExtResource("10_vtv0v")
+
 [node name="TapComponent" parent="." instance=ExtResource("3_ms6vs")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TapComponent"]
@@ -36,6 +79,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_67s43")
 
 [node name="Label" type="Label" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
