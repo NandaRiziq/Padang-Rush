@@ -3,7 +3,7 @@ extends Node
 var game_difficulty: int = 1
 var allowed_customers: int = 1
 var allowed_main_dish: int = 1
-var spawn_delay: float = 5.0
+var spawn_delay: float = 4.0
 var customer_patience: int = 100
 var player_life: int = 3
 var player_money: int = 0
@@ -18,7 +18,7 @@ func reset_game_state() -> void:
 	game_difficulty = 1
 	allowed_customers = 1
 	allowed_main_dish = 1
-	spawn_delay = 5.0
+	spawn_delay = 4.0
 	customer_patience = 100
 	player_life = 3
 	player_money = 0

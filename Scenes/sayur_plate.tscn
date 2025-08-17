@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://v36kqya6siku" path="res://Scripts/Components/send&receive_item_component.gd" id="1_1y1so"]
 [ext_resource type="PackedScene" uid="uid://boh3ugknw6csa" path="res://Scenes/Components/bounce_component.tscn" id="1_tg82l"]
-[ext_resource type="Texture2D" uid="uid://ck8en6y3r8fy" path="res://Assets/Food/daun.png" id="2_shwdj"]
+[ext_resource type="Texture2D" uid="uid://k124qqeysidr" path="res://Assets/Food new/sayur-plate.png" id="3_70rho"]
 [ext_resource type="PackedScene" uid="uid://ctofytujvrca7" path="res://Scenes/Components/tap_component.tscn" id="3_shwdj"]
 [ext_resource type="AudioStream" uid="uid://cp48pmyq6yaig" path="res://Assets/Sounds/ceramic_plate_clank2.wav" id="4_sfx"]
 
@@ -16,8 +16,9 @@ script = ExtResource("1_1y1so")
 [node name="BounceComponent" parent="." instance=ExtResource("1_tg82l")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.35, 0.35)
-texture = ExtResource("2_shwdj")
+position = Vector2(3, 0)
+scale = Vector2(0.246667, 0.246667)
+texture = ExtResource("3_70rho")
 
 [node name="TapComponent" parent="." instance=ExtResource("3_shwdj")]
 

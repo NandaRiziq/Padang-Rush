@@ -6,6 +6,7 @@ extends CanvasLayer
 @onready var queue_pos_4: Marker2D = $QueuePos4
 @onready var serving_plate: Node2D = $"../TableLayer/ServingPlate"
 @onready var sfx_player: AudioStreamPlayer = $SFX_Success
+@onready var sfx_cash_register: AudioStreamPlayer = $SFX_CashRegister
 
 var available_slot: Array
 var taken_slot: Array
@@ -26,6 +27,9 @@ func _ready() -> void:
 	call_deferred("emit_signal", "queue_slot_ready")
 
 	# sfx player provided in scene as SFX_Success
+	# ensure cash register SFX stream is set
+	if is_instance_valid(sfx_cash_register) and sfx_cash_register.stream == null:
+		sfx_cash_register.stream = load("res://Assets/Sounds/cash-register-purchase.wav")
 
 
 func use_slot(slot) -> void:
@@ -80,6 +84,7 @@ func order_match(order1: Array, order2: Array) -> bool:
 
 
 func _play_order_success_sfx() -> void:
-	if not is_instance_valid(sfx_player):
-		return
-	sfx_player.play()
+	if is_instance_valid(sfx_player):
+		sfx_player.play()
+	if is_instance_valid(sfx_cash_register):
+		sfx_cash_register.play()

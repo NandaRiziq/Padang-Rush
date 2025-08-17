@@ -18,21 +18,32 @@ var chosen_queue_slot
 var start_end_pos: Vector2
 var queue_layer: CanvasLayer
 var queue_ypos = 634.0
+var has_switched_to_angry: bool = false
 
 signal order_ready
 
 ### char sprites
 var characters: Array = [
-	[ #char 1
-	"res://Assets/Character/Char1.png",
-	"res://Assets/Character/Char1-smiling.png",
-	"res://Assets/Character/Char1-angry.png"
+	[ #char Pria
+	"res://Assets/Character/Pria-Senang.png",
+	"res://Assets/Character/Pria-Senang.png",
+	"res://Assets/Character/Pria-Marah.png",
 	],
-	[ #char 2
-	"res://Assets/Character/Char2.png",
-	"res://Assets/Character/Char2-smiling.png",
-	"res://Assets/Character/Char2-angry.png"
+	[ #char Perempuan
+	"res://Assets/Character/Perempuan-Senang.png",
+	"res://Assets/Character/Perempuan-Senang.png",
+	"res://Assets/Character/Perempuan-Marah.png",
 	],
+	[ #char Anak
+	"res://Assets/Character/Anak-Kecil-Senang.png",
+	"res://Assets/Character/Anak-Kecil-Senang.png",
+	"res://Assets/Character/Anak-Kecil-Marah.png",
+	],
+	[ #char Kakek
+	"res://Assets/Character/Kakek-Senang.png",
+	"res://Assets/Character/Kakek-Senang.png",
+	"res://Assets/Character/Kakek-Marah.png",
+	]
 ]
 
 ### particle asset
@@ -56,6 +67,9 @@ func _ready() -> void:
 	
 	# customer walkout upon patience depleted
 	patience_bar.patience_depleted.connect(_on_patience_depleted)
+	# react to patience changes for face updates
+	if is_instance_valid(patience_bar):
+		patience_bar.value_changed.connect(_on_patience_value_changed)
 	
 	# choose start position
 	choose_start_end_pos()
@@ -81,6 +95,22 @@ func _on_patience_depleted() -> void:
 		if is_instance_valid(sfx_patience):
 			sfx_patience.play()
 	walk_out_queue(false)
+
+
+func _on_patience_value_changed(new_value: float) -> void:
+	if has_switched_to_angry:
+		return
+	if not is_instance_valid(patience_bar):
+		return
+	var max_val: float = max(1.0, float(patience_bar.max_value))
+	var ratio: float = clamp(float(new_value) / max_val, 0.0, 1.0)
+	var yellow_threshold: float = 0.25
+	if "yellow_threshold" in patience_bar:
+		yellow_threshold = patience_bar.yellow_threshold
+	# switch to angry when entering orange range (below yellow threshold)
+	if ratio < yellow_threshold:
+		customer_sprite.texture = load(choosen_char[2])
+		has_switched_to_angry = true
 
 
 func random_char() -> void:

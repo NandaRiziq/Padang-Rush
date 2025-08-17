@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cwsuey3hveipf"]
 
 [ext_resource type="PackedScene" uid="uid://boh3ugknw6csa" path="res://Scenes/Components/bounce_component.tscn" id="1_at584"]
-[ext_resource type="Texture2D" uid="uid://cyui0832i8u63" path="res://Assets/Object/rice cooker-closed.png" id="2_41a3j"]
+[ext_resource type="Texture2D" uid="uid://b17xll5nsy511" path="res://Assets/Food new/rice-cooker.png" id="2_crgkh"]
 [ext_resource type="PackedScene" uid="uid://ctofytujvrca7" path="res://Scenes/Components/tap_component.tscn" id="3_41a3j"]
 [ext_resource type="AudioStream" uid="uid://cp48pmyq6yaig" path="res://Assets/Sounds/ceramic_plate_clank2.wav" id="4_sfx"]
 
@@ -13,8 +13,8 @@ size = Vector2(301, 335)
 [node name="BounceComponent" parent="." instance=ExtResource("1_at584")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.45, 0.45)
-texture = ExtResource("2_41a3j")
+scale = Vector2(0.303333, 0.303333)
+texture = ExtResource("2_crgkh")
 
 [node name="TapComponent" parent="." instance=ExtResource("3_41a3j")]
 

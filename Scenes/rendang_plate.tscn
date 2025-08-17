@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cqqj827tloqdb"]
 
 [ext_resource type="PackedScene" uid="uid://boh3ugknw6csa" path="res://Scenes/Components/bounce_component.tscn" id="1_5yfsu"]
-[ext_resource type="Texture2D" uid="uid://be6ulngjrhvkj" path="res://Assets/Food/rendang.png" id="2_pmjpe"]
+[ext_resource type="Texture2D" uid="uid://c2c2g1t4a21kk" path="res://Assets/Food new/rendang-plate.png" id="2_pmjpe"]
 [ext_resource type="PackedScene" uid="uid://ctofytujvrca7" path="res://Scenes/Components/tap_component.tscn" id="3_4pjmp"]
 [ext_resource type="AudioStream" uid="uid://cp48pmyq6yaig" path="res://Assets/Sounds/ceramic_plate_clank2.wav" id="4_sfx"]
 
@@ -14,7 +14,8 @@ height = 380.0
 [node name="BounceComponent" parent="." instance=ExtResource("1_5yfsu")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.4, 0.4)
+position = Vector2(-5, 13)
+scale = Vector2(0.28, 0.28)
 texture = ExtResource("2_pmjpe")
 
 [node name="TapComponent" parent="." instance=ExtResource("3_4pjmp")]

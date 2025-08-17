@@ -1,10 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://b34d2nvfkqqax"]
+[gd_scene load_steps=10 format=3 uid="uid://b34d2nvfkqqax"]
 
 [ext_resource type="Script" uid="uid://bm6ndahymkmlr" path="res://Scripts/UI/main_menu.gd" id="1_2j8kv"]
 [ext_resource type="Texture2D" uid="uid://dxwj7msj03l63" path="res://Assets/UI/Logo.png" id="1_5wsvm"]
 [ext_resource type="Texture2D" uid="uid://bllbhkbllio8k" path="res://Assets/Environment/Sky.png" id="1_o14dv"]
 [ext_resource type="Theme" uid="uid://dgxpyjky8m3c4" path="res://UI.tres" id="2_i2xx2"]
+[ext_resource type="Texture2D" uid="uid://7sr6w6n5lkb0" path="res://Assets/UI/Logo-v2.png" id="3_4pqbp"]
 [ext_resource type="AudioStream" uid="uid://bsnt3wxr2g2wb" path="res://Assets/Sounds/Main Menu BGM.mp3" id="3_bgm"]
+[ext_resource type="Texture2D" uid="uid://x3a70xq8dpj7" path="res://Assets/UI/pole.png" id="3_k33u3"]
+[ext_resource type="FontFile" uid="uid://bqe7ac6nj2yab" path="res://Assets/Fredoka-Medium.ttf" id="6_4pqbp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gih0s"]
+font = ExtResource("6_4pqbp")
+font_color = Color(0.31802, 0.31802, 0.31802, 1)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -24,7 +31,23 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_o14dv")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -140.0
+offset_top = -561.0
+offset_right = 140.0
+offset_bottom = 219.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_k33u3")
+
 [node name="Logo" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -37,6 +60,22 @@ grow_horizontal = 2
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("1_5wsvm")
 
+[node name="Logo2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -471.0
+offset_top = -579.0
+offset_right = 553.0
+offset_bottom = 445.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.925, 0.925)
+texture = ExtResource("3_4pqbp")
+
 [node name="Button" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 7
@@ -44,10 +83,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -136.0
-offset_top = -339.0
-offset_right = 136.0
-offset_bottom = -250.0
+offset_left = -170.0
+offset_top = -251.0
+offset_right = 170.0
+offset_bottom = -142.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("2_i2xx2")
@@ -58,3 +97,21 @@ stream = ExtResource("3_bgm")
 autoplay = true
 bus = &"BGM"
 parameters/looping = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -457.0
+offset_top = -48.0
+offset_right = 457.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "This game is made for Nusantara Game Jam #4 2025 submission"
+label_settings = SubResource("LabelSettings_gih0s")
+horizontal_alignment = 1
+vertical_alignment = 1

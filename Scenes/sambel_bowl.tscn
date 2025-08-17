@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dtcesociub8au"]
 
 [ext_resource type="PackedScene" uid="uid://boh3ugknw6csa" path="res://Scenes/Components/bounce_component.tscn" id="1_pbkmh"]
-[ext_resource type="Texture2D" uid="uid://c4tx68vis6s76" path="res://Assets/Food/sambel.png" id="2_1bcm3"]
+[ext_resource type="Texture2D" uid="uid://biwuxabthvwqw" path="res://Assets/Food new/sambal-plate.png" id="2_el1l2"]
 [ext_resource type="PackedScene" uid="uid://ctofytujvrca7" path="res://Scenes/Components/tap_component.tscn" id="3_1bcm3"]
 [ext_resource type="AudioStream" uid="uid://cp48pmyq6yaig" path="res://Assets/Sounds/ceramic_plate_clank2.wav" id="4_sfx"]
 
@@ -14,8 +14,9 @@ height = 276.0
 [node name="BounceComponent" parent="." instance=ExtResource("1_pbkmh")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_1bcm3")
+position = Vector2(0, -12)
+scale = Vector2(0.355, 0.355)
+texture = ExtResource("2_el1l2")
 
 [node name="TapComponent" parent="." instance=ExtResource("3_1bcm3")]
 

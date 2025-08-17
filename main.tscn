@@ -1,8 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://wpdjhugicopb"]
+[gd_scene load_steps=29 format=3 uid="uid://wpdjhugicopb"]
 
-[ext_resource type="Texture2D" uid="uid://dsxlohjlm6ce8" path="res://Assets/Environment/background.png" id="1_4c57u"]
 [ext_resource type="Script" uid="uid://c0d0wifwkaoup" path="res://Scripts/main.gd" id="1_cegan"]
 [ext_resource type="Texture2D" uid="uid://qhepkprtddwb" path="res://Assets/Environment/Table.png" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://d2qek72v4bki6" path="res://Assets/Environment/bg-v2.png" id="2_0odxb"]
 [ext_resource type="PackedScene" uid="uid://cqqj827tloqdb" path="res://Scenes/rendang_plate.tscn" id="2_0xm2m"]
 [ext_resource type="FontFile" uid="uid://bqe7ac6nj2yab" path="res://Assets/Fredoka-Medium.ttf" id="2_yaehf"]
 [ext_resource type="PackedScene" uid="uid://bkuv3ckk1o34e" path="res://Scenes/serving_plate.tscn" id="3_h2yge"]
@@ -21,9 +21,10 @@
 [ext_resource type="PackedScene" uid="uid://bpx4pdmwju2k3" path="res://Scenes/trash_can.tscn" id="13_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://dtvk4x5ew6kor" path="res://Scenes/UI/in_game_ui.tscn" id="21_getpj"]
 [ext_resource type="Script" uid="uid://4sef0ollbfhn" path="res://Scripts/debugger_label.gd" id="22_ryguw"]
-[ext_resource type="AudioStream" uid="uid://2p5i50qx087o" path="res://Assets/Sounds/In Game BGM.mp3" id="23_bgm"]
+[ext_resource type="AudioStream" uid="uid://c77tjkm8wujqa" path="res://Assets/Sounds/Interior Birdecorator Decorate.ogg" id="24_0odxb"]
 [ext_resource type="AudioStream" uid="uid://46hsinbmkgpx" path="res://Assets/Sounds/Cafeteria.wav" id="24_1u8w0"]
 [ext_resource type="AudioStream" uid="uid://dgnp21tknm3ds" path="res://Assets/Sounds/caps hit with wood 20.wav" id="24_sfx_success"]
+[ext_resource type="AudioStream" uid="uid://yp488g0gbi5m" path="res://Assets/Sounds/cash-register-purchase.wav" id="25_sfx_cash"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_d13ii"]
 font = ExtResource("2_yaehf")
@@ -41,10 +42,9 @@ process_priority = 10
 script = ExtResource("1_cegan")
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(945.5, 406)
-scale = Vector2(1.27279, 1.24414)
-texture = ExtResource("1_4c57u")
-metadata/_edit_lock_ = true
+position = Vector2(962, 311)
+scale = Vector2(1.25481, 1.22656)
+texture = ExtResource("2_0odxb")
 
 [node name="DebuggerLayer" type="CanvasLayer" parent="."]
 layer = 128
@@ -122,6 +122,12 @@ metadata/_edit_lock_ = true
 
 [node name="SFX_Success" type="AudioStreamPlayer" parent="QueueLayer"]
 stream = ExtResource("24_sfx_success")
+volume_db = 2.0
+bus = &"SFX"
+
+[node name="SFX_CashRegister" type="AudioStreamPlayer" parent="QueueLayer"]
+stream = ExtResource("25_sfx_cash")
+volume_db = -3.0
 bus = &"SFX"
 
 [node name="TableLayer" type="CanvasLayer" parent="."]
@@ -136,32 +142,32 @@ texture = ExtResource("1_ig7tw")
 position = Vector2(960, 622)
 
 [node name="SambelBowl" parent="TableLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("6_7mycd")]
-position = Vector2(1402, 804)
+position = Vector2(1409, 804)
 scale = Vector2(0.7, 0.7)
 script = ExtResource("6_dg77c")
 receiver = NodePath("../ServingPlate")
 item_list = ["Sambal"]
 
-[node name="AyamPopPlate" parent="TableLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("4_1bvp3")]
-position = Vector2(609, 890)
-script = ExtResource("6_dg77c")
-receiver = NodePath("../ServingPlate")
-item_list = ["Ayam Pop"]
-
 [node name="SayurPlate" parent="TableLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("7_272bh")]
-position = Vector2(1405, 967)
+position = Vector2(1412, 967)
 scale = Vector2(0.7, 0.7)
 receiver = NodePath("../ServingPlate")
 item_list = ["Sayur"]
 
 [node name="TelurPlate" parent="TableLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("5_lquwl")]
-position = Vector2(1021, 889)
+position = Vector2(1066, 889)
 script = ExtResource("6_dg77c")
 receiver = NodePath("../ServingPlate")
 item_list = ["Telur"]
 
+[node name="AyamPopPlate" parent="TableLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("4_1bvp3")]
+position = Vector2(642, 890)
+script = ExtResource("6_dg77c")
+receiver = NodePath("../ServingPlate")
+item_list = ["Ayam Pop"]
+
 [node name="RendangPlate" parent="TableLayer" node_paths=PackedStringArray("receiver") instance=ExtResource("2_0xm2m")]
-position = Vector2(211, 905)
+position = Vector2(219, 905)
 script = ExtResource("6_dg77c")
 receiver = NodePath("../ServingPlate")
 item_list = ["Rendang"]
@@ -189,7 +195,7 @@ layer = 128
 [node name="InGameUI" parent="UILayer" instance=ExtResource("21_getpj")]
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("23_bgm")
+stream = ExtResource("24_0odxb")
 autoplay = true
 bus = &"BGM"
 parameters/looping = true

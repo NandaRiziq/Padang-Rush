@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bcbpbs7jleuxq" path="res://Scripts/Components/es_teh_component.gd" id="1_2qfb5"]
 [ext_resource type="PackedScene" uid="uid://boh3ugknw6csa" path="res://Scenes/Components/bounce_component.tscn" id="1_hc5db"]
-[ext_resource type="Texture2D" uid="uid://voicj0kvirpa" path="res://Assets/Object/jar.png" id="2_nxwx3"]
 [ext_resource type="PackedScene" uid="uid://ctofytujvrca7" path="res://Scenes/Components/tap_component.tscn" id="3_nxwx3"]
-[ext_resource type="Texture2D" uid="uid://dy5v21o8fbd2j" path="res://Assets/Food/es teh.png" id="4_bis12"]
+[ext_resource type="Texture2D" uid="uid://bw44m1d6i0kdy" path="res://Assets/Object/teko.png" id="3_ymjku"]
+[ext_resource type="Texture2D" uid="uid://b5sgg3ewbllct" path="res://Assets/Food new/es-teh-single.png" id="4_ymjku"]
 [ext_resource type="Script" uid="uid://csqwajdyea4eq" path="res://Scripts/refill_bar.gd" id="5_co48g"]
 [ext_resource type="AudioStream" uid="uid://du706g6j1617o" path="res://Assets/Sounds/teapot on table 17.wav" id="6_sfx"]
 [ext_resource type="AudioStream" uid="uid://dckqh3hggrs52" path="res://Assets/Sounds/glass_clank.wav" id="7_sfx_tap"]
@@ -34,18 +34,18 @@ script = ExtResource("1_2qfb5")
 
 [node name="JarSprite" type="Sprite2D" parent="."]
 position = Vector2(0, -30)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_nxwx3")
+scale = Vector2(0.275, 0.275)
+texture = ExtResource("3_ymjku")
 
 [node name="EsTehSprite1" type="Sprite2D" parent="."]
 position = Vector2(-72.2, 32)
-scale = Vector2(0.15, 0.15)
-texture = ExtResource("4_bis12")
+scale = Vector2(0.301667, 0.301667)
+texture = ExtResource("4_ymjku")
 
 [node name="EsTehSprite2" type="Sprite2D" parent="."]
 position = Vector2(-147.2, 32)
-scale = Vector2(0.15, 0.15)
-texture = ExtResource("4_bis12")
+scale = Vector2(0.302, 0.302)
+texture = ExtResource("4_ymjku")
 
 [node name="TapComponent" parent="." instance=ExtResource("3_nxwx3")]
 

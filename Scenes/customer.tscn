@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://6vkc4odul5el"]
 
-[ext_resource type="Texture2D" uid="uid://c72wckv4l4kdp" path="res://Assets/Character/Char1.png" id="1_fp685"]
 [ext_resource type="Script" uid="uid://bjihja7n227m5" path="res://Scripts/customer.gd" id="1_qf3me"]
+[ext_resource type="Texture2D" uid="uid://wlhbct6666jq" path="res://Assets/Character/Pria-Senang.png" id="2_2o0mk"]
 [ext_resource type="PackedScene" uid="uid://dl3a1wm0ondxa" path="res://Scenes/order_label.tscn" id="2_7c3kf"]
 [ext_resource type="Script" uid="uid://buhhxipl6f5ic" path="res://Scripts/patience_bar.gd" id="3_0v30w"]
 [ext_resource type="Script" uid="uid://bkvwqkcwl0bxm" path="res://Scripts/customer_animation.gd" id="5_vkxjs"]
@@ -92,10 +92,11 @@ script = ExtResource("1_qf3me")
 walk_duration = 3.0
 
 [node name="CustomerSprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_fp685")
+position = Vector2(0, -181.667)
+texture = ExtResource("2_2o0mk")
 
 [node name="OrderLabel" parent="." instance=ExtResource("2_7c3kf")]
-position = Vector2(281, -607)
+position = Vector2(295, -607)
 scale = Vector2(0.5, 0.5)
 
 [node name="PatienceBar" type="ProgressBar" parent="OrderLabel"]
@@ -110,6 +111,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_0v30w")
 value = 68.76
 show_percentage = false
 script = ExtResource("3_0v30w")
+color_green = Color(0.266667, 0.678431, 0.439216, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="CustomerAnimation" type="AnimationPlayer" parent="."]

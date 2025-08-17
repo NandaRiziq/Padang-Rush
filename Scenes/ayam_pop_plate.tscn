@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://d2fk7pbbm01eo"]
 
 [ext_resource type="PackedScene" uid="uid://boh3ugknw6csa" path="res://Scenes/Components/bounce_component.tscn" id="1_lyc1d"]
-[ext_resource type="Texture2D" uid="uid://hj6326f11xio" path="res://Assets/Food/ayam.png" id="2_x5knr"]
+[ext_resource type="Texture2D" uid="uid://b4d7sggteirds" path="res://Assets/Food new/ayam-plate.png" id="2_x5knr"]
 [ext_resource type="PackedScene" uid="uid://ctofytujvrca7" path="res://Scenes/Components/tap_component.tscn" id="3_44niu"]
 [ext_resource type="AudioStream" uid="uid://cp48pmyq6yaig" path="res://Assets/Sounds/ceramic_plate_clank2.wav" id="4_sfx"]
 
@@ -14,7 +14,7 @@ height = 360.0
 [node name="BounceComponent" parent="." instance=ExtResource("1_lyc1d")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.4, 0.4)
+scale = Vector2(0.283333, 0.283333)
 texture = ExtResource("2_x5knr")
 
 [node name="TapComponent" parent="." instance=ExtResource("3_44niu")]
